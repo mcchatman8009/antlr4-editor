@@ -1,0 +1,12 @@
+@import '~codemirror/lib/codemirror.css';
+@import '~codemirror/addon/lint/lint.css';
+@import '~codemirror/addon/hint/show-hint.css';
+
+.CodeMirror .CodeMirror-placeholder {
+  color: #999;
+}
+
+.CodeMirror-hint:hover {
+  background: rgba(0, 136, 255, 0.50);
+  color: white;
+}
