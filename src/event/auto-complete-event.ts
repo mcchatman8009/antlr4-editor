@@ -2,11 +2,14 @@ import {AntlrRuleWrapper} from 'antlr4-helper';
 import {Completion} from '../completion/completion';
 import {AntlrEditor} from '../editor/antlr-editor';
 import {CompletionPopup} from '../completion/completion-popup';
+import {CompletionTemplateHandler} from '../handler/completion-template-handler';
 
 export class AutoCompleteEvent {
     private _allowChildrenToConsumeEvent = true;
+    private completionTemplateHandler: CompletionTemplateHandler;
 
     constructor(public readonly rule: AntlrRuleWrapper, private editor: AntlrEditor) {
+        this.completionTemplateHandler = new CompletionTemplateHandler(this.editor);
     }
 
     stopPropagation(): void {
@@ -16,7 +19,7 @@ export class AutoCompleteEvent {
     showCompletions(completions: Completion[]): CompletionPopup {
 
         completions = completions.map((completion) => {
-            return this.editor.createRuleCompletion(completion, this.rule);
+            return this.completionTemplateHandler.processCompletion(this.editor.createRuleCompletion(completion, this.rule));
         });
 
         return this.editor.showCompletions(completions);

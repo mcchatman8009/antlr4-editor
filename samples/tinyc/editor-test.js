@@ -20,7 +20,11 @@ editor.addAutoCompleteListener('id', (event) => {
     console.log(event.rule.getName());
     console.log(event.rule.getText());
 
-    event.showCompletions([{text: 'var'}, {text: 'vartwo'}]);
+    event.showCompletions([{
+        text: 'a = {{ b }}',
+        displayText: 'a = val',
+        placeholderVariables: {b: {defaultValue: 'value'}}
+    }, {text: 'vartwo'}]);
 });
 
 // editor.addAutoCompleteListener('expr', (event) => {
@@ -60,7 +64,11 @@ const placeholder = editor.createRulePlaceholder(rule);
 placeholder.focus();
 placeholder.enableDefaultKeyEventHandlers();
 placeholder.addChangeListener((event) => {
-    event.showCompletions([{text: 'varone'}, {text: 'vartwo'}]);
+    event.showCompletions([{
+        text: 'a = {{ b }}',
+        displayText: 'a = val',
+        placeholderVariables: {b: {defaultValue: 'value'}}
+    }, {text: 'vartwo'}]);
 });
 
 editor.addChangeListener(() => {

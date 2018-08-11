@@ -48,6 +48,7 @@
     "antlr4-helper": "^1.0.27",
     "antlr4-tool": "^1.0.17",
     "codemirror": "^5.39.2",
+    "expressive-template": "^1.0.0",
     "lodash": "^4.17.10",
     "rxjs": "^6.2.2"
   },

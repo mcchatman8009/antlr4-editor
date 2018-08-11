@@ -35,7 +35,7 @@ export class CodeMirrorPlaceholder implements Placeholder {
     addChangeListener(listener: (event: PlaceHolderAutoCompleteEvent) => void) {
         this.inputElement.addEventListener('input', (event) => {
             event.stopPropagation();
-            listener(new PlaceHolderAutoCompleteEvent(this, this.inputElement.innerText));
+            listener(new PlaceHolderAutoCompleteEvent(this, this.inputElement.innerText, this.editor));
         });
     }
 

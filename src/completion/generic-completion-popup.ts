@@ -96,6 +96,10 @@ export class GenericCompletionPopup implements CompletionPopup {
 
                 if (completion.range && completion.text) {
                     this.editor.replaceRange(completion.range, completion.text);
+
+                    _.each(completion.placeholderFactoryMethods, (func, varName) => {
+                        completion.placeholders[varName] = func();
+                    });
                 }
 
                 this.afterSelection(completion);
