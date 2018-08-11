@@ -45,6 +45,7 @@ export class CodeMirrorEditor implements AntlrEditor {
     private displaySingleError: boolean;
     private changeSubject: Subject<EditorChangeEvent>;
     private ruleDecorations: Map<ParserRuleContext, RuleDecoration>;
+    private placeholdersRendered: Set<Placeholder>;
     private tokenDecorations: Map<Token, TokenDecoration>;
     private ruleErrorMessageHandlers: Map<string, (err: AntlrRuleError) => string>;
     private autoCompleteSubject: Subject<AutoCompleteEvent>;
@@ -66,6 +67,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         this.ruleDecorations = new Map<ParserRuleContext, RuleDecoration>();
         this.tokenDecorations = new Map<Token, TokenDecoration>();
         this.autoCompletionHandler = new AutoCompletionHandler(this);
+        this.placeholdersRendered = new Set<Placeholder>();
 
         if (this.domContainer === undefined) {
             this.domContainer = document.createElement('div');
@@ -104,6 +106,7 @@ export class CodeMirrorEditor implements AntlrEditor {
 
             this.ruleDecorations.clear();
             this.tokenDecorations.clear();
+            this.placeholdersRendered.clear();
         });
 
         parser.addParserCompleteListener(() => {
@@ -394,16 +397,27 @@ export class CodeMirrorEditor implements AntlrEditor {
         return newRange;
     }
 
+    hasRenderedPlaceholders(): boolean {
+        const list = Array.from(this.placeholdersRendered).filter((placeholder) => placeholder.exists());
+
+        return list.length > 0;
+    }
+
     createPlaceholder(range: [EditorPosition, EditorPosition]): Placeholder {
         const el = document.createElement('span');
         const placeholder = new CodeMirrorPlaceholder(this, el, range);
         this.clearCompletions();
+
+        this.placeholdersRendered.add(placeholder);
+
         return placeholder;
     }
 
     createRulePlaceholder(rule: AntlrRuleWrapper): Placeholder {
         const placeHolder = this.createPlaceholder(rule.getRange());
         placeHolder.setPlaceHolderText(rule.getName());
+
+        this.placeholdersRendered.add(placeHolder);
 
         return placeHolder;
     }

@@ -87,6 +87,10 @@ export class CodeMirrorPlaceholder implements Placeholder {
         setTimeout(() => this.inputElement.focus(), 20);
     }
 
+    exists(): boolean {
+        return this.getDomElement().contains(this.domContainer);
+    }
+
     enableDefaultKeyEventHandlers(): void {
         this.inputElement.addEventListener('keypress', (e) => e.which !== 13);
 

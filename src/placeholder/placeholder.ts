@@ -20,4 +20,6 @@ export interface Placeholder {
     enableDefaultKeyEventHandlers(): void;
 
     focus(): void;
+
+    exists(): boolean;
 }

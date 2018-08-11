@@ -10,6 +10,8 @@ import {EditorChangeEvent} from '../event/editor-change-event';
 import {Placeholder} from '../placeholder/placeholder';
 
 export interface AntlrEditor {
+    hasRenderedPlaceholders(): boolean;
+
     replaceRange(range: [EditorPosition, EditorPosition], text: string): [EditorPosition, EditorPosition];
 
     setDisplayDecorations(display: boolean): void;
