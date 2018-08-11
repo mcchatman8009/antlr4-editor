@@ -12,6 +12,16 @@ import {BookmarkDecoration} from '../bookmark/bookmark';
 
 export interface AntlrEditor {
 
+    hasSelections(): boolean;
+
+    addTokenSelection(token: AntlrTokenWrapper): void;
+
+    addRuleSelection(rule: AntlrRuleWrapper): void;
+
+    addSelection(range: [EditorPosition, EditorPosition]): void;
+
+    getSelections(): Array<[EditorPosition, EditorPosition]>;
+
     createBookmarkDecoration(start: EditorPosition, dom: HTMLElement, insertLeft?: boolean): BookmarkDecoration;
 
     hasRenderedPlaceholders(): boolean;

@@ -56,6 +56,7 @@ export class CodeMirrorEditor implements AntlrEditor {
     private currentCompletionPopup: CompletionPopup;
     private lastChangeEvent: EditorChangeEvent;
     private defaultHintMapping: KeyMapping;
+    private selections: Set<[EditorPosition, EditorPosition]>;
 
     constructor(private parser: AntlrParser, private domContainer?: HTMLElement) {
         const mode = _.uniqueId('antlrGrammarMode');
@@ -70,6 +71,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         this.tokenDecorations = new Map<Token, TokenDecoration>();
         this.autoCompletionHandler = new AutoCompletionHandler(this);
         this.placeholdersRendered = new Set<Placeholder>();
+        this.selections = new Set<[EditorPosition, EditorPosition]>();
 
         if (this.domContainer === undefined) {
             this.domContainer = document.createElement('div');
@@ -106,6 +108,7 @@ export class CodeMirrorEditor implements AntlrEditor {
             Array.from(this.ruleDecorations.values())
                 .forEach((decoration) => decoration.remove());
 
+            this.selections.clear();
             this.ruleDecorations.clear();
             this.tokenDecorations.clear();
             this.placeholdersRendered.clear();
@@ -427,6 +430,31 @@ export class CodeMirrorEditor implements AntlrEditor {
     createBookmarkDecoration(start: EditorPosition, dom: HTMLElement, insertLeft?: boolean): BookmarkDecoration {
         const bookmark = new CodeMirrorBookmark(this, start, dom, insertLeft);
         return bookmark;
+    }
+
+    hasSelections(): boolean {
+        return this.editorImplementation.getDoc().somethingSelected();
+    }
+
+    addTokenSelection(token: AntlrTokenWrapper): void {
+        this.addSelection(token.getRange());
+    }
+
+    addRuleSelection(rule: AntlrRuleWrapper): void {
+        this.addSelection(rule.getRange());
+    }
+
+    addSelection(range: [EditorPosition, EditorPosition]): void {
+        const anchor = {ch: range[0].column, line: range[0].line};
+        const head = {ch: range[1].column, line: range[1].line};
+
+        this.selections.add(range);
+
+        (this.editorImplementation.getDoc() as any).addSelection(anchor, head);
+    }
+
+    getSelections(): Array<[EditorPosition, EditorPosition]> {
+        return Array.from(this.selections);
     }
 
     private clearCompletions() {
