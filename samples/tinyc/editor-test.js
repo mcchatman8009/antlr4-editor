@@ -59,17 +59,18 @@ editor.focus();
 editor.setText('\n\tvar = a;');
 
 const rule = parser.findRulesByName('id')[1];
+editor.addRuleSelection(rule);
 
-const placeholder = editor.createRulePlaceholder(rule);
-placeholder.focus();
-placeholder.enableDefaultKeyEventHandlers();
-placeholder.addChangeListener((event) => {
-    event.showCompletions([{
-        text: 'a = {{ b }}',
-        displayText: 'a = val',
-        placeholderVariables: {b: {defaultValue: 'value'}}
-    }, {text: 'vartwo'}]);
-});
+// const placeholder = editor.createRulePlaceholder(rule);
+// placeholder.focus();
+// placeholder.enableDefaultKeyEventHandlers();
+// placeholder.addChangeListener((event) => {
+//     event.showCompletions([{
+//         text: 'a = {{ b }}',
+//         displayText: 'a = val',
+//         placeholderVariables: {b: {defaultValue: 'value'}}
+//     }, {text: 'vartwo'}]);
+// });
 const domEl = document.createElement('span');
 domEl.innerText = '>';
 editor.createBookmarkDecoration(rule.getRange()[1], domEl);
