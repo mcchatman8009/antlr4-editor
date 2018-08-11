@@ -9,6 +9,7 @@
     "build-docs": "typedoc --theme markdown --mdHideSources --out docs --includes ./src",
     "build-tinyc-sample": "antlr4-tool -o ./samples/tinyc/parser grammars/tinyc/Tinyc.g4",
     "build-scss": "webpack --config ./webpack.scss.config.js",
+    "start-tinyc": "electron ./samples/tinyc/index.html",
     "clean": "rm -rf dist",
     "lint": "tslint -p . -c tslint.json 'src/**/*.ts'",
     "build": "tsc && antlr4-tool -o ./test/tinyc grammars/tinyc/Tinyc.g4"
