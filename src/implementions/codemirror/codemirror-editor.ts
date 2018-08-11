@@ -424,7 +424,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         return placeHolder;
     }
 
-    createBookmark(start: EditorPosition, dom: HTMLElement, insertLeft?: boolean): BookmarkDecoration {
+    createBookmarkDecoration(start: EditorPosition, dom: HTMLElement, insertLeft?: boolean): BookmarkDecoration {
         const bookmark = new CodeMirrorBookmark(this, start, dom, insertLeft);
         return bookmark;
     }

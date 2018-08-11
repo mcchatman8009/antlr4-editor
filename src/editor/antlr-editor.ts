@@ -12,7 +12,7 @@ import {BookmarkDecoration} from '../bookmark/bookmark';
 
 export interface AntlrEditor {
 
-    createBookmark(start: EditorPosition, dom: HTMLElement, insertLeft?: boolean): BookmarkDecoration;
+    createBookmarkDecoration(start: EditorPosition, dom: HTMLElement, insertLeft?: boolean): BookmarkDecoration;
 
     hasRenderedPlaceholders(): boolean;
 

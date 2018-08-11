@@ -72,7 +72,7 @@ placeholder.addChangeListener((event) => {
 });
 const domEl = document.createElement('span');
 domEl.innerText = '>';
-editor.createBookmark(rule.getRange()[1], domEl);
+editor.createBookmarkDecoration(rule.getRange()[1], domEl);
 
 editor.addChangeListener(() => {
     // console.log(parser.findRuleByName('program').getText());
