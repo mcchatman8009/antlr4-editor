@@ -1,4 +1,4 @@
-# Antlr4 Helper
+# Antlr4 Editor
 
 ## Overview
 
@@ -6,4 +6,3 @@
 ```bash
 npm install -S antlr4-editor
 ```
-# antlr4-editor
