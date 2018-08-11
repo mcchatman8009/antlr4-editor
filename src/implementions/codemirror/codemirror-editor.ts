@@ -36,6 +36,8 @@ import {EditorChangeEvent} from '../../event/editor-change-event';
 import {CodeMirrorChangeEvent} from './event/codemirror-change-event';
 import {Placeholder} from '../../placeholder/placeholder';
 import {CodeMirrorPlaceholder} from './placeholder/codemirror-placeholder';
+import {BookmarkDecoration} from '../../bookmark/bookmark';
+import {CodeMirrorBookmark} from './bookmark/codemirror-bookmark';
 
 export class CodeMirrorEditor implements AntlrEditor {
     editorImplementation: Editor;
@@ -420,6 +422,11 @@ export class CodeMirrorEditor implements AntlrEditor {
         this.placeholdersRendered.add(placeHolder);
 
         return placeHolder;
+    }
+
+    createBookmark(start: EditorPosition, dom: HTMLElement, insertLeft?: boolean): BookmarkDecoration {
+        const bookmark = new CodeMirrorBookmark(this, start, dom, insertLeft);
+        return bookmark;
     }
 
     private clearCompletions() {

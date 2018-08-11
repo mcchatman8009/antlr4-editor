@@ -8,8 +8,12 @@ import {Completion} from '../completion/completion';
 import {CompletionPopup} from '../completion/completion-popup';
 import {EditorChangeEvent} from '../event/editor-change-event';
 import {Placeholder} from '../placeholder/placeholder';
+import {BookmarkDecoration} from '../bookmark/bookmark';
 
 export interface AntlrEditor {
+
+    createBookmark(start: EditorPosition, dom: HTMLElement, insertLeft?: boolean): BookmarkDecoration;
+
     hasRenderedPlaceholders(): boolean;
 
     replaceRange(range: [EditorPosition, EditorPosition], text: string): [EditorPosition, EditorPosition];

@@ -70,6 +70,9 @@ placeholder.addChangeListener((event) => {
         placeholderVariables: {b: {defaultValue: 'value'}}
     }, {text: 'vartwo'}]);
 });
+const domEl = document.createElement('span');
+domEl.innerText = '>';
+editor.createBookmark(rule.getRange()[1], domEl);
 
 editor.addChangeListener(() => {
     // console.log(parser.findRuleByName('program').getText());
