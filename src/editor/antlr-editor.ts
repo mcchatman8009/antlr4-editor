@@ -32,7 +32,7 @@ export interface AntlrEditor {
 
     getDisplayDecorations(): boolean;
 
-    defineErrorMessage(ruleOrMessage: string, messageHandler: (error: AntlrRuleError) => string): void
+    defineErrorMessage(ruleOrMessage: string, messageHandler: (error: AntlrRuleError) => string): void;
 
     getRelevantEditorError(): AntlrRuleError;
 

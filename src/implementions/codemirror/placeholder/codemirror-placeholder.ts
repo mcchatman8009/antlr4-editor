@@ -92,7 +92,7 @@ export class CodeMirrorPlaceholder implements Placeholder {
     }
 
     enableDefaultKeyEventHandlers(): void {
-        this.inputElement.addEventListener('keypress', (e) => e.which !== 13);
+        this.inputElement.addEventListener('keypress', (e) => e.code !== 'Enter');
 
         this.inputElement.addEventListener('keypress', (event) => {
             event.stopImmediatePropagation();

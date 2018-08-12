@@ -16,10 +16,10 @@ export class AutoCompletionHandler {
 
                     while (stack.length > 0) {
                         const root = stack.pop();
-                        const event = new AutoCompleteEvent(root, this.editor);
-                        this.editor.triggerAutoCompletionEvent(event);
+                        const autoCompleteEvent = new AutoCompleteEvent(root, this.editor);
+                        this.editor.triggerAutoCompletionEvent(autoCompleteEvent);
 
-                        if (event.allowChildrenToConsumeEvent) {
+                        if (autoCompleteEvent.allowChildrenToConsumeEvent) {
                             root.getChildren()
                                 .forEach((child) => {
                                     stack.push(child);
