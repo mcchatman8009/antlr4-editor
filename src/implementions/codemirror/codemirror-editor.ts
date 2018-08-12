@@ -41,6 +41,7 @@ import {CodeMirrorBookmark} from './bookmark/codemirror-bookmark';
 
 export class CodeMirrorEditor implements AntlrEditor {
     editorImplementation: Editor;
+
     private defaultTokenStyles: { [tokenName: string]: string };
     private defaultRuleStyles: { [ruleName: string]: string };
     private cursorPosition: EditorPosition;
@@ -48,6 +49,7 @@ export class CodeMirrorEditor implements AntlrEditor {
     private changeSubject: Subject<EditorChangeEvent>;
     private ruleDecorations: Map<ParserRuleContext, RuleDecoration>;
     private placeholdersRendered: Set<Placeholder>;
+    private bookmarkDecorations: Set<BookmarkDecoration>;
     private tokenDecorations: Map<Token, TokenDecoration>;
     private ruleErrorMessageHandlers: Map<string, (err: AntlrRuleError) => string>;
     private autoCompleteSubject: Subject<AutoCompleteEvent>;
@@ -57,12 +59,18 @@ export class CodeMirrorEditor implements AntlrEditor {
     private lastChangeEvent: EditorChangeEvent;
     private defaultHintMapping: KeyMapping;
     private selections: Set<[EditorPosition, EditorPosition]>;
+    private hintContainer: HTMLElement;
+    private customErrors: Set<AntlrRuleError>;
+    private validators: Set<(rule: AntlrRuleWrapper) => AntlrRuleError>;
 
     constructor(private parser: AntlrParser, private domContainer?: HTMLElement) {
         const mode = _.uniqueId('antlrGrammarMode');
 
         this.displayDecorations = true;
+        this.customErrors = new Set<AntlrRuleError>();
         this.changeSubject = new Subject<EditorChangeEvent>();
+        this.validators = new Set<(rule: AntlrRuleWrapper) => AntlrRuleError>();
+
         this.ruleErrorMessageHandlers = new Map<string, (err: AntlrRuleError) => string>();
         this.autoCompleteSubject = new Subject<AutoCompleteEvent>();
         this.defaultTokenStyles = {};
@@ -71,6 +79,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         this.tokenDecorations = new Map<Token, TokenDecoration>();
         this.autoCompletionHandler = new AutoCompletionHandler(this);
         this.placeholdersRendered = new Set<Placeholder>();
+        this.bookmarkDecorations = new Set<BookmarkDecoration>();
         this.selections = new Set<[EditorPosition, EditorPosition]>();
 
         if (this.domContainer === undefined) {
@@ -78,6 +87,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         }
 
         this.domContainer.classList.add('antlr-editor');
+        this.hintContainer = this.domContainer;
 
         this.editorImplementation = CodeMirror(this.domContainer, {});
         this.editorImplementation.getDoc().getMode().name = mode;
@@ -93,7 +103,7 @@ export class CodeMirrorEditor implements AntlrEditor {
                 const parserErrors = this.getEditorErrors();
                 return parserErrors.map((err) => this.mapParseErrorToCodeMirrorError(err));
             } else {
-                if (this.parser.hasErrors()) {
+                if (this.hasErrors()) {
                     return [this.mapParseErrorToCodeMirrorError(this.getRelevantEditorError())];
                 }
 
@@ -108,10 +118,15 @@ export class CodeMirrorEditor implements AntlrEditor {
             Array.from(this.ruleDecorations.values())
                 .forEach((decoration) => decoration.remove());
 
+            Array.from(this.bookmarkDecorations.values())
+                .forEach((decoration) => decoration.remove());
+
             this.selections.clear();
             this.ruleDecorations.clear();
+            this.bookmarkDecorations.clear();
             this.tokenDecorations.clear();
             this.placeholdersRendered.clear();
+            this.customErrors.clear();
         });
 
         parser.addParserCompleteListener(() => {
@@ -148,6 +163,9 @@ export class CodeMirrorEditor implements AntlrEditor {
         });
     }
 
+    setHintContainer(el: HTMLElement): void {
+        this.hintContainer = el;
+    }
 
     setText(text: string): void {
         this.updateCursorPosition();
@@ -324,7 +342,7 @@ export class CodeMirrorEditor implements AntlrEditor {
     }
 
     getEditorErrors(): AntlrRuleError[] {
-        const errors = this.parser.getErrors();
+        const errors = _.concat(Array.from(this.customErrors), this.parser.getErrors());
 
         return errors.map((err) => {
             const newErr = _.clone(err);
@@ -369,12 +387,11 @@ export class CodeMirrorEditor implements AntlrEditor {
 
     showCompletions(completions: Completion[]): CompletionPopup {
         this.clearCompletions();
-
         this.addKeyMapping(this.defaultHintMapping);
 
-
         const cursorEl = this.domContainer.getElementsByClassName('CodeMirror-cursor').item(0) as HTMLElement;
-        const popup = new GenericCompletionPopup(this.domContainer, this);
+        const popup = new GenericCompletionPopup(this.hintContainer, this);
+
         popup.singleCompletionCssClass = HINT_CLASS;
         popup.completionsCssClass = HINTS_CLASS;
         popup.activeCompletionCssClass = ACTIVE_HINT_CLASS;
@@ -429,6 +446,7 @@ export class CodeMirrorEditor implements AntlrEditor {
 
     createBookmarkDecoration(start: EditorPosition, dom: HTMLElement, insertLeft?: boolean): BookmarkDecoration {
         const bookmark = new CodeMirrorBookmark(this, start, dom, insertLeft);
+        this.bookmarkDecorations.add(bookmark);
         return bookmark;
     }
 
@@ -455,6 +473,72 @@ export class CodeMirrorEditor implements AntlrEditor {
 
     getSelections(): Array<[EditorPosition, EditorPosition]> {
         return Array.from(this.selections);
+    }
+
+    setEnableVim(enable: boolean): void {
+        if (enable) {
+            this.editorImplementation.setOption('keyMap', 'vim');
+        } else {
+            this.editorImplementation.setOption('keyMap', 'default');
+        }
+    }
+
+    getEnableVim(): boolean {
+        return this.editorImplementation.getOption('keyMap') === 'vim';
+    }
+
+    getRuleByName(ruleName: string): AntlrRuleWrapper {
+        return this.parser.findRuleByName(ruleName);
+    }
+
+    getRulesByName(ruleName: string): AntlrRuleWrapper[] {
+        return this.parser.findRulesByName(ruleName);
+    }
+
+    getAllRules(): AntlrRuleWrapper[] {
+        return this.parser.getAllRules();
+    }
+
+    getAllTokens(): AntlrTokenWrapper[] {
+        return this.parser.getAllTokens();
+    }
+
+    addEditorValidator(validator: (rule: AntlrRuleWrapper) => AntlrRuleError): void {
+        this.validators.add(validator);
+    }
+
+    hasErrors(): boolean {
+        return this.getEditorErrors().length > 0;
+    }
+
+    createRuleError(rule?: AntlrRuleWrapper): AntlrRuleError {
+        if (rule) {
+            return this.parser.createRuleError(rule.getRule());
+        } else {
+            return {
+                start: {column: 0, line: 0},
+                end: {column: 0, line: 0},
+                message: '',
+                exception: undefined,
+                severity: 'error',
+                rule: undefined,
+                ruleWrapper: undefined
+            };
+        }
+    }
+
+    validate(): void {
+        Array.from(this.validators).forEach((validator) => {
+            this.getAllRules().forEach((rule) => {
+                const res = validator(rule);
+
+                if (!_.isNil(res)) {
+                    this.customErrors.add(res);
+                }
+            });
+        });
+
+        (this.editorImplementation as any).performLint();
     }
 
     private clearCompletions() {
@@ -491,7 +575,6 @@ export class CodeMirrorEditor implements AntlrEditor {
             message: err.message,
             severity: err.severity
         };
-
     }
 
     private attachBasicEvents() {
@@ -503,16 +586,17 @@ export class CodeMirrorEditor implements AntlrEditor {
             Down: () => this.currentCompletionPopup.chooseNextCompletion(),
         };
 
-        window.addEventListener('blur', () => {
-            this.clearCompletions();
-        });
+        window.addEventListener('blur', () => this.clearCompletions());
 
-        this.editorImplementation.on('change', (___, change) => {
-            this.lastChangeEvent = new CodeMirrorChangeEvent(this, change);
+        this.editorImplementation.on('changes', (___, changes) => {
+            let hasValueSetOccurred = false;
 
-            if (change.origin !== 'setValue') {
-                this.setText(this.editorImplementation.getValue());
-            } else {
+            changes.forEach((change) => {
+                this.lastChangeEvent = new CodeMirrorChangeEvent(this, change);
+                hasValueSetOccurred = (change.origin === 'setValue');
+            });
+
+            if (hasValueSetOccurred) {
                 //
                 // Set the cursor the the last know position found.
                 // If we see a direct change made to the editor.
@@ -524,12 +608,9 @@ export class CodeMirrorEditor implements AntlrEditor {
                         ch: this.cursorPosition.column,
                         line: this.cursorPosition.line
                     });
-
+            } else {
+                this.setText(this.editorImplementation.getValue());
             }
-        });
-
-        this.editorImplementation.on('cursorActivity', () => {
-            this.updateCursorPosition();
         });
     }
 

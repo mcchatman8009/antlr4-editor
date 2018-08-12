@@ -22,7 +22,7 @@
   outline: cornflowerblue auto thick;
 }
 
-.antlr-icon__cancel {
+.antlr-icon-cancel {
   background: none;
   user-select: none;
   font-size: 0.75em;
@@ -56,3 +56,27 @@
   border-radius: 50px;
   outline: none;
 }
+
+.antlr-toolbar {
+  display: block;
+  position: relative;
+
+  &__button {
+    background: none;
+    outline: none;
+    border: none;
+  }
+
+  &__button:hover {
+    cursor: pointer;
+  }
+
+  &__button__disabled {
+    opacity: 0.5;
+  }
+
+  &__button__enabled {
+    opacity: 1;
+  }
+}
+

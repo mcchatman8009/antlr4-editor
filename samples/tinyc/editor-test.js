@@ -1,3 +1,5 @@
+const {SimpleToolbar} = require("../../dist/toolbar/simple-toolbar");
+
 const {CodeMirrorEditor} = require('../../dist/implementions/codemirror/codemirror-editor');
 const antlrHelper = require('antlr4-helper');
 
@@ -55,6 +57,10 @@ editor.update();
 const el = editor.getDomElement();
 
 document.body.appendChild(el);
+
+const toolbar = new SimpleToolbar(editor);
+el.appendChild(toolbar.create());
+
 editor.focus();
 editor.setText('\n\tvar = a;');
 
@@ -74,6 +80,13 @@ editor.addRuleSelection(rule);
 const domEl = document.createElement('span');
 domEl.innerText = '>';
 editor.createBookmarkDecoration(rule.getRange()[1], domEl);
+
+editor.addEditorValidator((rule) => {
+    const err = editor.createRuleError(rule);
+    return err;
+});
+
+editor.validate();
 
 editor.addChangeListener(() => {
     // console.log(parser.findRuleByName('program').getText());

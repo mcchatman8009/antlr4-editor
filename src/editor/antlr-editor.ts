@@ -102,6 +102,10 @@ export interface AntlrEditor {
 
     setEditorPlaceholderText(text: string): void;
 
+    setEnableVim(enable: boolean): void;
+
+    getEnableVim(): boolean;
+
     getEditorPlaceholderText(): string;
 
     update(): void;
@@ -113,4 +117,20 @@ export interface AntlrEditor {
     createRuleCompletion(completion: Completion, rule: AntlrRuleWrapper): Completion;
 
     triggerAutoCompletionEvent(event: AutoCompleteEvent): void;
+
+    getRuleByName(ruleName: string): AntlrRuleWrapper;
+
+    getRulesByName(ruleName: string): AntlrRuleWrapper[];
+
+    addEditorValidator(validator: (rule: AntlrRuleWrapper) => AntlrRuleError): void;
+
+    hasErrors(): boolean;
+
+    createRuleError(rule?: AntlrRuleWrapper): AntlrRuleError;
+
+    validate(): void;
+
+    getAllRules(): AntlrRuleWrapper[];
+
+    getAllTokens(): AntlrTokenWrapper[];
 }
