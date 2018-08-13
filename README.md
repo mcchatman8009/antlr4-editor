@@ -49,3 +49,14 @@ const el = editor.getDomElement();
 document.body.appendChild(el);
 
 ```
+
+### TODOS
+
+- [ ] Improve API Documentation
+- [ ] Add Ace Editor Support
+- [ ] Add Monaco Editor Support
+- [ ] Create Sample Editors
+- [ ] Publish Sample Editor
+- [ ] Create Tutorials
+- [X] Add CodeMirror Support
+- [ ] Provide CLI Support
