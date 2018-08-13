@@ -591,8 +591,11 @@ export class CodeMirrorEditor implements AntlrEditor {
         this.editorImplementation.on('changes', (___, changes) => {
             let hasValueSetOccurred = false;
 
+            if (changes.length >= 1 && changes[0].origin !== 'setValue'){
+                this.lastChangeEvent = new CodeMirrorChangeEvent(this, changes);
+            }
+
             changes.forEach((change) => {
-                this.lastChangeEvent = new CodeMirrorChangeEvent(this, change);
                 hasValueSetOccurred = (change.origin === 'setValue');
             });
 

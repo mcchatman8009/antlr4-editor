@@ -1,6 +1,6 @@
 {
   "name": "antlr4-editor",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "An full editor front-end library that can support various editor platforms, all using Antlr4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

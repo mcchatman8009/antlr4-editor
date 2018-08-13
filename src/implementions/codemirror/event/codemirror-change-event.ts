@@ -4,18 +4,18 @@ import * as CodeMirror from 'codemirror';
 import * as _ from 'lodash';
 
 export class CodeMirrorChangeEvent implements EditorChangeEvent {
-    constructor(private editor: CodeMirrorEditor, private changeEvent: CodeMirror.EditorChangeLinkedList) {
+    constructor(private editor: CodeMirrorEditor, private changeEvents: CodeMirror.EditorChangeLinkedList[]) {
 
     }
 
     hasDeleteEditChange(): boolean {
-        const removedText = this.changeEvent.removed.join('').trim();
+        const removedText = _.flatten(this.changeEvents.filter((evt) => evt.origin !== 'setValue').map((ev) => ev.removed)).join('').trim();
 
-        return (this.changeEvent.origin === '+delete' && !_.isEmpty(removedText));
+        return (!_.isEmpty(removedText));
     }
 
     hasInsertEditChange(): boolean {
-        const changedText = this.changeEvent.text.join('').trim();
-        return (this.changeEvent.origin === '+input' && !_.isEmpty(changedText));
+        const changedText = _.flatten(this.changeEvents.filter((evt) => evt.origin !== 'setValue').map((ev) => ev.text)).join('').trim();
+        return (!_.isEmpty(changedText));
     }
 }
