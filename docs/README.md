@@ -7,7 +7,7 @@ Overview
 
 The goal of this project/library is to provide developers with a simple to use API to develop web compatible code editors, using only Antlr4 Grammars. Allowing for the creation of the editor and language to be more unified during the development process.
 
-**(Currently the only fully supported editor platform supported is codemirror at the moment)**
+**(Currently the only fully supported editor platform is codemirror at the moment)**
 
 Getting Started
 ---------------
@@ -51,6 +51,17 @@ const el = editor.getDomElement();
 // Render the editor
 document.body.appendChild(el);
 ```
+
+### TODOS
+
+*   \[ \] Improve API Documentation
+*   \[ \] Add Ace Editor Support
+*   \[ \] Add Monaco Editor Support
+*   \[ \] Create Sample Editors
+*   \[ \] Publish Sample Editors
+*   \[ \] Create Tutorials
+*   \[X\] Add CodeMirror Support
+*   \[ \] Provide CLI Support
 
 ## Index
 

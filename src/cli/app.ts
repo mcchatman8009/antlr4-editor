@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('antlr4-editor/dist/cli');
+require('antlr4-editor/dist/cli/cli');
