@@ -18,7 +18,7 @@
 
 ### Properties
 
-* [changeEvent](_implementions_codemirror_event_codemirror_change_event_.codemirrorchangeevent.md#changeevent)
+* [changeEvents](_implementions_codemirror_event_codemirror_change_event_.codemirrorchangeevent.md#changeevents)
 * [editor](_implementions_codemirror_event_codemirror_change_event_.codemirrorchangeevent.md#editor)
 
 ### Methods
@@ -34,14 +34,14 @@
 
 ###  constructor
 
-⊕ **new CodeMirrorChangeEvent**(editor: *[CodeMirrorEditor](_implementions_codemirror_codemirror_editor_.codemirroreditor.md)*, changeEvent: *`EditorChangeLinkedList`*): [CodeMirrorChangeEvent](_implementions_codemirror_event_codemirror_change_event_.codemirrorchangeevent.md)
+⊕ **new CodeMirrorChangeEvent**(editor: *[CodeMirrorEditor](_implementions_codemirror_codemirror_editor_.codemirroreditor.md)*, changeEvents: *`EditorChangeLinkedList`[]*): [CodeMirrorChangeEvent](_implementions_codemirror_event_codemirror_change_event_.codemirrorchangeevent.md)
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | editor | [CodeMirrorEditor](_implementions_codemirror_codemirror_editor_.codemirroreditor.md) |
-| changeEvent | `EditorChangeLinkedList` |
+| changeEvents | `EditorChangeLinkedList`[] |
 
 **Returns:** [CodeMirrorChangeEvent](_implementions_codemirror_event_codemirror_change_event_.codemirrorchangeevent.md)
 
@@ -49,11 +49,11 @@ ___
 
 ## Properties
 
-<a id="changeevent"></a>
+<a id="changeevents"></a>
 
-### `<Private>` changeEvent
+### `<Private>` changeEvents
 
-**● changeEvent**: *`EditorChangeLinkedList`*
+**● changeEvents**: *`EditorChangeLinkedList`[]*
 
 ___
 <a id="editor"></a>
