@@ -16,7 +16,7 @@ npm install -S antlr4-editor
 
 Generate the source files for creating a C Editor.
 ```javascript
-antlr4-editor -r compilationUnit samples/c/C.g4
+antlr4-editor -o src/editor -r compilationUnit samples/c/C.g4
 ```
 Example Output
 ![Output Example](./images/output.png)
