@@ -56,7 +56,7 @@ document.body.appendChild(el);
 - [ ] Add Ace Editor Support
 - [ ] Add Monaco Editor Support
 - [ ] Create Sample Editors
-- [ ] Publish Sample Editor
+- [ ] Publish Sample Editors
 - [ ] Create Tutorials
 - [X] Add CodeMirror Support
 - [ ] Provide CLI Support
