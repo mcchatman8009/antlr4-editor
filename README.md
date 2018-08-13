@@ -2,7 +2,7 @@
 
 ## Overview
 The goal of this project/library is to provide developers with a simple to use API to develop
-web compatible code editors, using only Antlr4 Grammars. Allowing for the creation of editor and language
+web compatible code editors, using only Antlr4 Grammars. Allowing for the creation of the editor and language
 to be more unified during the development process. 
 
 **(Currently the only fully supported editor platform supported is codemirror at the moment)**
