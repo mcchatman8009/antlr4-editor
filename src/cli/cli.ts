@@ -49,6 +49,7 @@ _.each(compiledResults, (files: string[], grammar: string) => {
     files.forEach((f: string) => console.log(`Generated ${chalk.blue.underline(f)}`));
 
     generateFile(`${outputDirectory}/index.js`, templates.index, {});
+    generateFile(`${outputDirectory}/index.d.ts`, templates.indexTs, {editorModule});
     generateFile(`${outputDirectory}/test-editor-app.js`, templates.app, {});
 
     if (parsers.length > 0) {
