@@ -20,7 +20,6 @@ export * from './handler/auto-completion-handler';
 export * from './handler/completion-template-handler';
 
 export * from './implementions';
-export * from './implementions/codemirror/codemirror-editor';
 
 export * from './key-mapping/key-mapping';
 
