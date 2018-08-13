@@ -1,0 +1,28 @@
+<%#
+variables:
+    editorModule   - Antlr Editor Module
+    LexerClass     - The Lexer Class
+    ParserClass    - The Parser Class
+    rootRule       - The root rule begin the parsing
+    editorPlatform -  the editor platform
+%>
+var antlrEditor = require('<%= editorModule %>');
+var antlrHelper = require('antlr4-helper');
+var <%= LexerClass %> = require('./<%= LexerClass %>').<%= LexerClass %>;
+var <%= ParserClass %> = require('./<%= ParserClass %>').<%= ParserClass %>;
+
+var factory = antlrHelper.createFactoryBuilder()
+    .lexer(function(input) { return new <%= LexerClass %>(input); })
+    .parser(function(tokenStream) { return new <%= ParserClass %>(tokenStream); })
+    .rootRule(function(parser) { return parser.<%= rootRule %>(); })
+    .build();
+
+var parser = antlrHelper.createParser(factory);
+
+
+function createEditor() {
+    return antlrEditor.createEditor(parser, '<%= editorPlatform %>');
+}
+
+exports.createEditor = createEditor;
+

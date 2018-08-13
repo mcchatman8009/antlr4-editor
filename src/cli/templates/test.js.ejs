@@ -1,0 +1,35 @@
+var antlrEditor = require('.');
+
+var editor = antlrEditor.createEditor();
+editor.setEditorPlaceholderText('Enter your code here...');
+
+editor.setShowLineNumbers(true);
+editor.setDisplayEditorErrors(true);
+
+//editor.setTheme('idea');
+editor.focus();
+
+var el = editor.getDomElement();
+
+// Render the editor
+document.body.appendChild(el);
+
+//
+// Rule Styles
+//
+var ruleStyles = {};
+<% _.each(rulesNames, (rule)=> { -%>
+//ruleStyles['<%= rule %>'] = 'cm-keyword';
+<% }); -%>
+editor.setDefaultRuleStyles(ruleStyles);
+
+var tokenStyles = {};
+
+//
+// Token Styles
+//
+<% _.each(lexerRulesNames, (rule)=> { -%>
+//tokenStyles['<%= rule %>'] = 'cm-keyword';
+<% }); -%>
+
+editor.setDefaultTokenStyles(tokenStyles);
