@@ -1,7 +1,9 @@
 import {AntlrParser} from 'antlr4-helper';
-import {CodeMirrorEditor} from './codemirror/codemirror-editor';
+import {AntlrEditor} from '../';
 
-export function createEditor(parser: AntlrParser, editorPlatform?: string, domElement?: HTMLElement) {
+const {CodeMirrorEditor} = require('./codemirror/codemirror-editor');
+
+export function createEditor(parser: AntlrParser, editorPlatform?: string, domElement?: HTMLElement): AntlrEditor {
     switch (editorPlatform) {
         case 'codemirror':
         default:

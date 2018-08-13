@@ -4,11 +4,25 @@
 
 ## Index
 
+### Variables
+
+* [CodeMirrorEditor](_implementions_index_.md#codemirroreditor)
+
 ### Functions
 
 * [createEditor](_implementions_index_.md#createeditor)
 
 ---
+
+## Variables
+
+<a id="codemirroreditor"></a>
+
+###  CodeMirrorEditor
+
+**● CodeMirrorEditor**: *`any`*
+
+___
 
 ## Functions
 
@@ -16,7 +30,7 @@
 
 ###  createEditor
 
-▸ **createEditor**(parser: *`AntlrParser`*, editorPlatform?: *`string`*, domElement?: *`HTMLElement`*): [CodeMirrorEditor](../classes/_implementions_codemirror_codemirror_editor_.codemirroreditor.md)
+▸ **createEditor**(parser: *`AntlrParser`*, editorPlatform?: *`string`*, domElement?: *`HTMLElement`*): [AntlrEditor](../interfaces/_editor_antlr_editor_.antlreditor.md)
 
 **Parameters:**
 
@@ -26,7 +40,7 @@
 | `Optional` editorPlatform | `string` |
 | `Optional` domElement | `HTMLElement` |
 
-**Returns:** [CodeMirrorEditor](../classes/_implementions_codemirror_codemirror_editor_.codemirroreditor.md)
+**Returns:** [AntlrEditor](../interfaces/_editor_antlr_editor_.antlreditor.md)
 
 ___
 
