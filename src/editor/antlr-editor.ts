@@ -11,6 +11,17 @@ import {Placeholder} from '../placeholder/placeholder';
 import {BookmarkDecoration} from '../bookmark/bookmark';
 
 export interface AntlrEditor {
+    setReadOnly(readOnly: boolean): void;
+
+    getReadOnly(): boolean;
+
+    setStyleActiveLine(styleActiveLine: boolean): void;
+
+    getStyleActiveLine(): boolean;
+
+    setLineWrapping(lineWrapping: boolean): void;
+
+    getLineWrapping(): boolean;
 
     hasSelections(): boolean;
 
