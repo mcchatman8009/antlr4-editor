@@ -44,13 +44,16 @@
 * [getEditorErrors](_editor_antlr_editor_.antlreditor.md#geteditorerrors)
 * [getEditorPlaceholderText](_editor_antlr_editor_.antlreditor.md#geteditorplaceholdertext)
 * [getEnableVim](_editor_antlr_editor_.antlreditor.md#getenablevim)
+* [getLineWrapping](_editor_antlr_editor_.antlreditor.md#getlinewrapping)
 * [getParser](_editor_antlr_editor_.antlreditor.md#getparser)
+* [getReadOnly](_editor_antlr_editor_.antlreditor.md#getreadonly)
 * [getRelevantEditorError](_editor_antlr_editor_.antlreditor.md#getrelevanteditorerror)
 * [getRuleByName](_editor_antlr_editor_.antlreditor.md#getrulebyname)
 * [getRuleDecoration](_editor_antlr_editor_.antlreditor.md#getruledecoration)
 * [getRulesByName](_editor_antlr_editor_.antlreditor.md#getrulesbyname)
 * [getSelections](_editor_antlr_editor_.antlreditor.md#getselections)
 * [getShowLineNumbers](_editor_antlr_editor_.antlreditor.md#getshowlinenumbers)
+* [getStyleActiveLine](_editor_antlr_editor_.antlreditor.md#getstyleactiveline)
 * [getText](_editor_antlr_editor_.antlreditor.md#gettext)
 * [getTheme](_editor_antlr_editor_.antlreditor.md#gettheme)
 * [getTokenDecoration](_editor_antlr_editor_.antlreditor.md#gettokendecoration)
@@ -67,8 +70,11 @@
 * [setDisplayOnlyRelevantEditorErrors](_editor_antlr_editor_.antlreditor.md#setdisplayonlyrelevanteditorerrors)
 * [setEditorPlaceholderText](_editor_antlr_editor_.antlreditor.md#seteditorplaceholdertext)
 * [setEnableVim](_editor_antlr_editor_.antlreditor.md#setenablevim)
+* [setLineWrapping](_editor_antlr_editor_.antlreditor.md#setlinewrapping)
 * [setParser](_editor_antlr_editor_.antlreditor.md#setparser)
+* [setReadOnly](_editor_antlr_editor_.antlreditor.md#setreadonly)
 * [setShowLineNumbers](_editor_antlr_editor_.antlreditor.md#setshowlinenumbers)
+* [setStyleActiveLine](_editor_antlr_editor_.antlreditor.md#setstyleactiveline)
 * [setText](_editor_antlr_editor_.antlreditor.md#settext)
 * [setTheme](_editor_antlr_editor_.antlreditor.md#settheme)
 * [showCompletions](_editor_antlr_editor_.antlreditor.md#showcompletions)
@@ -475,6 +481,15 @@ ___
 **Returns:** `boolean`
 
 ___
+<a id="getlinewrapping"></a>
+
+###  getLineWrapping
+
+▸ **getLineWrapping**(): `boolean`
+
+**Returns:** `boolean`
+
+___
 <a id="getparser"></a>
 
 ###  getParser
@@ -482,6 +497,15 @@ ___
 ▸ **getParser**(): `AntlrParser`
 
 **Returns:** `AntlrParser`
+
+___
+<a id="getreadonly"></a>
+
+###  getReadOnly
+
+▸ **getReadOnly**(): `boolean`
+
+**Returns:** `boolean`
 
 ___
 <a id="getrelevanteditorerror"></a>
@@ -552,6 +576,15 @@ ___
 ###  getShowLineNumbers
 
 ▸ **getShowLineNumbers**(): `boolean`
+
+**Returns:** `boolean`
+
+___
+<a id="getstyleactiveline"></a>
+
+###  getStyleActiveLine
+
+▸ **getStyleActiveLine**(): `boolean`
 
 **Returns:** `boolean`
 
@@ -767,6 +800,21 @@ ___
 **Returns:** `void`
 
 ___
+<a id="setlinewrapping"></a>
+
+###  setLineWrapping
+
+▸ **setLineWrapping**(lineWrapping: *`boolean`*): `void`
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| lineWrapping | `boolean` |
+
+**Returns:** `void`
+
+___
 <a id="setparser"></a>
 
 ###  setParser
@@ -782,6 +830,21 @@ ___
 **Returns:** `void`
 
 ___
+<a id="setreadonly"></a>
+
+###  setReadOnly
+
+▸ **setReadOnly**(readOnly: *`boolean`*): `void`
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| readOnly | `boolean` |
+
+**Returns:** `void`
+
+___
 <a id="setshowlinenumbers"></a>
 
 ###  setShowLineNumbers
@@ -793,6 +856,21 @@ ___
 | Param | Type |
 | ------ | ------ |
 | show | `boolean` |
+
+**Returns:** `void`
+
+___
+<a id="setstyleactiveline"></a>
+
+###  setStyleActiveLine
+
+▸ **setStyleActiveLine**(styleActiveLine: *`boolean`*): `void`
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| styleActiveLine | `boolean` |
 
 **Returns:** `void`
 

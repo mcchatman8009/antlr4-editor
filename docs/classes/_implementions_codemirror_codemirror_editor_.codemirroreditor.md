@@ -25,6 +25,7 @@
 * [currentCompletionPopup](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#currentcompletionpopup)
 * [cursorPosition](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#cursorposition)
 * [customErrors](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#customerrors)
+* [defaultCursorBlinkingRate](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#defaultcursorblinkingrate)
 * [defaultHintMapping](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#defaulthintmapping)
 * [defaultRuleStyles](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#defaultrulestyles)
 * [defaultTokenStyles](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#defaulttokenstyles)
@@ -39,6 +40,7 @@
 * [ruleDecorations](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#ruledecorations)
 * [ruleErrorMessageHandlers](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#ruleerrormessagehandlers)
 * [selections](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#selections)
+* [setValueEvent](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#setvalueevent)
 * [tokenDecorations](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#tokendecorations)
 * [validators](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#validators)
 
@@ -76,13 +78,16 @@
 * [getEditorErrors](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#geteditorerrors)
 * [getEditorPlaceholderText](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#geteditorplaceholdertext)
 * [getEnableVim](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getenablevim)
+* [getLineWrapping](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getlinewrapping)
 * [getParser](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getparser)
+* [getReadOnly](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getreadonly)
 * [getRelevantEditorError](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getrelevanteditorerror)
 * [getRuleByName](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getrulebyname)
 * [getRuleDecoration](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getruledecoration)
 * [getRulesByName](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getrulesbyname)
 * [getSelections](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getselections)
 * [getShowLineNumbers](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getshowlinenumbers)
+* [getStyleActiveLine](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#getstyleactiveline)
 * [getText](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#gettext)
 * [getTheme](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#gettheme)
 * [getTokenDecoration](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#gettokendecoration)
@@ -102,8 +107,11 @@
 * [setEditorPlaceholderText](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#seteditorplaceholdertext)
 * [setEnableVim](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#setenablevim)
 * [setHintContainer](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#sethintcontainer)
+* [setLineWrapping](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#setlinewrapping)
 * [setParser](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#setparser)
+* [setReadOnly](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#setreadonly)
 * [setShowLineNumbers](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#setshowlinenumbers)
+* [setStyleActiveLine](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#setstyleactiveline)
 * [setText](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#settext)
 * [setTheme](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#settheme)
 * [showAllDecorations](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#showalldecorations)
@@ -185,6 +193,13 @@ ___
 ### `<Private>` customErrors
 
 **● customErrors**: *`Set`<`AntlrRuleError`>*
+
+___
+<a id="defaultcursorblinkingrate"></a>
+
+### `<Private>` defaultCursorBlinkingRate
+
+**● defaultCursorBlinkingRate**: *`boolean`*
 
 ___
 <a id="defaulthintmapping"></a>
@@ -291,6 +306,13 @@ ___
 ### `<Private>` selections
 
 **● selections**: *`Set`<[[EditorPosition](../interfaces/_types_.editorposition.md), [EditorPosition](../interfaces/_types_.editorposition.md)]>*
+
+___
+<a id="setvalueevent"></a>
+
+### `<Private>` setValueEvent
+
+**● setValueEvent**: *`boolean`*
 
 ___
 <a id="tokendecorations"></a>
@@ -723,6 +745,15 @@ ___
 **Returns:** `boolean`
 
 ___
+<a id="getlinewrapping"></a>
+
+###  getLineWrapping
+
+▸ **getLineWrapping**(): `boolean`
+
+**Returns:** `boolean`
+
+___
 <a id="getparser"></a>
 
 ###  getParser
@@ -730,6 +761,15 @@ ___
 ▸ **getParser**(): `AntlrParser`
 
 **Returns:** `AntlrParser`
+
+___
+<a id="getreadonly"></a>
+
+###  getReadOnly
+
+▸ **getReadOnly**(): `boolean`
+
+**Returns:** `boolean`
 
 ___
 <a id="getrelevanteditorerror"></a>
@@ -800,6 +840,15 @@ ___
 ###  getShowLineNumbers
 
 ▸ **getShowLineNumbers**(): `boolean`
+
+**Returns:** `boolean`
+
+___
+<a id="getstyleactiveline"></a>
+
+###  getStyleActiveLine
+
+▸ **getStyleActiveLine**(): `boolean`
 
 **Returns:** `boolean`
 
@@ -1054,6 +1103,21 @@ ___
 **Returns:** `void`
 
 ___
+<a id="setlinewrapping"></a>
+
+###  setLineWrapping
+
+▸ **setLineWrapping**(lineWrapping: *`boolean`*): `void`
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| lineWrapping | `boolean` |
+
+**Returns:** `void`
+
+___
 <a id="setparser"></a>
 
 ###  setParser
@@ -1069,6 +1133,21 @@ ___
 **Returns:** `void`
 
 ___
+<a id="setreadonly"></a>
+
+###  setReadOnly
+
+▸ **setReadOnly**(readOnly: *`boolean`*): `void`
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| readOnly | `boolean` |
+
+**Returns:** `void`
+
+___
 <a id="setshowlinenumbers"></a>
 
 ###  setShowLineNumbers
@@ -1080,6 +1159,21 @@ ___
 | Param | Type |
 | ------ | ------ |
 | show | `boolean` |
+
+**Returns:** `void`
+
+___
+<a id="setstyleactiveline"></a>
+
+###  setStyleActiveLine
+
+▸ **setStyleActiveLine**(styleActiveLine: *`boolean`*): `void`
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| styleActiveLine | `boolean` |
 
 **Returns:** `void`
 
