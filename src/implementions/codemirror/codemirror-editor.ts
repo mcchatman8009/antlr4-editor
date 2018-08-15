@@ -169,20 +169,31 @@ export class CodeMirrorEditor implements AntlrEditor {
         this.hintContainer = el;
     }
 
+    replaceRange(range: [EditorPosition, EditorPosition], text: string): [EditorPosition, EditorPosition] {
+        const newRange = this.parser.replaceRange(range, text);
+        this.setValueEvent = true;
+        this.cursorPosition = newRange[1];
+        this.editorImplementation.getDoc().setCursor({ch: this.cursorPosition.column, line: this.cursorPosition.line});
+        // this.update();
+        // this.updateCursorPosition();
+        this.parser.reparse();
+        this.editorImplementation.setValue(this.parser.getText());
+        return newRange;
+    }
+
     setText(text: string): void {
         this.updateCursorPosition();
         this.parser.parse(text);
 
         this.setValueEvent = true;
         this.editorImplementation.setValue(this.parser.getText());
-        this.setValueEvent = false;
     }
 
     update(): void {
+        this.updateCursorPosition();
         this.parser.reparse();
         this.setValueEvent = true;
         this.editorImplementation.setValue(this.parser.getText());
-        this.setValueEvent = false;
     }
 
     getText(): string {
@@ -450,13 +461,6 @@ export class CodeMirrorEditor implements AntlrEditor {
         this.autoCompleteSubject.next(event);
     }
 
-    replaceRange(range: [EditorPosition, EditorPosition], text: string): [EditorPosition, EditorPosition] {
-        const newRange = this.parser.replaceRange(range, text);
-        this.cursorPosition = newRange[1];
-        this.update();
-        return newRange;
-    }
-
     hasRenderedPlaceholders(): boolean {
         const list = Array.from(this.placeholdersRendered).filter((placeholder) => placeholder.exists());
 
@@ -639,6 +643,7 @@ export class CodeMirrorEditor implements AntlrEditor {
                         ch: this.cursorPosition.column,
                         line: this.cursorPosition.line
                     });
+                this.setValueEvent = false;
             } else if (changes.length >= 1) {
                 this.lastChangeEvent = new CodeMirrorChangeEvent(this, changes);
                 ///

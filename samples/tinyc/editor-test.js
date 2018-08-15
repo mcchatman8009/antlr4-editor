@@ -15,7 +15,7 @@ const factory = antlrHelper.createFactoryBuilder()
 const parser = antlrHelper.createParser(factory);
 const editor = new CodeMirrorEditor(parser);
 
-editor.setReadOnly(true);
+// editor.setReadOnly(true);
 editor.defineErrorMessage('statement', (error) => 'Please add a semicolon \';\'');
 
 editor.addAutoCompleteListener('id', (event) => {
@@ -23,7 +23,7 @@ editor.addAutoCompleteListener('id', (event) => {
     // console.log(event.rule.getText());
 
     event.showCompletions([{
-        text: 'a = {{ b }}',
+        text: 'a = b',
         displayText: 'a = val',
         placeholderVariables: {b: {defaultValue: 'value'}}
     }, {text: 'vartwo'}]);
