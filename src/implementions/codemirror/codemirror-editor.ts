@@ -16,7 +16,7 @@ export const HINTS_CLASS = 'CodeMirror-hints';
 
 import * as CodeMirror from 'codemirror';
 import * as _ from 'lodash';
-import {Editor} from 'codemirror';
+import {Editor, EditorChange} from 'codemirror';
 import {AntlrEditor} from '../../editor/antlr-editor';
 import {RuleDecoration} from '../../decoration/rule-decoration';
 import {KeyMapping} from '../../key-mapping/key-mapping';
@@ -171,29 +171,42 @@ export class CodeMirrorEditor implements AntlrEditor {
 
     replaceRange(range: [EditorPosition, EditorPosition], text: string): [EditorPosition, EditorPosition] {
         const newRange = this.parser.replaceRange(range, text);
-        this.setValueEvent = true;
+
         this.cursorPosition = newRange[1];
+        this.setValueEvent = true;
+
+        const change = {
+            from: {ch: newRange[0].column, line: newRange[0].line},
+            to: {ch: newRange[0].column, line: newRange[0].line},
+            text: [text],
+            removed: [],
+            origin: text
+        } as EditorChange;
+
+        this.lastChangeEvent = new CodeMirrorChangeEvent(this, [change]);
         this.editorImplementation.getDoc().setCursor({ch: this.cursorPosition.column, line: this.cursorPosition.line});
-        // this.update();
-        // this.updateCursorPosition();
-        this.parser.reparse();
         this.editorImplementation.setValue(this.parser.getText());
+
+        this.parser.reparse();
+        this.editorImplementation.refresh();
+
         return newRange;
     }
 
     setText(text: string): void {
         this.updateCursorPosition();
-        this.parser.parse(text);
-
         this.setValueEvent = true;
         this.editorImplementation.setValue(this.parser.getText());
+
+        this.parser.parse(text);
     }
 
     update(): void {
         this.updateCursorPosition();
-        this.parser.reparse();
         this.setValueEvent = true;
         this.editorImplementation.setValue(this.parser.getText());
+
+        this.parser.reparse();
     }
 
     getText(): string {
@@ -631,6 +644,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         window.addEventListener('blur', () => this.clearCompletions());
 
         this.editorImplementation.on('changes', (___, changes) => {
+            this.lastChangeEvent = new CodeMirrorChangeEvent(this, changes);
             if (this.setValueEvent) {
                 //
                 // Set the cursor the the last know position found.
@@ -645,7 +659,6 @@ export class CodeMirrorEditor implements AntlrEditor {
                     });
                 this.setValueEvent = false;
             } else if (changes.length >= 1) {
-                this.lastChangeEvent = new CodeMirrorChangeEvent(this, changes);
                 ///
                 // Only need to change the parser text on a editor change.
                 //
