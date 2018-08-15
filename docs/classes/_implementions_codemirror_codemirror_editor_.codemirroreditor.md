@@ -58,7 +58,7 @@
 * [addStyleToToken](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#addstyletotoken)
 * [addTokenSelection](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#addtokenselection)
 * [attachBasicEvents](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#attachbasicevents)
-* [clearCompletions](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#clearcompletions)
+* [clearAllCompletions](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#clearallcompletions)
 * [createBookmarkDecoration](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#createbookmarkdecoration)
 * [createPlaceholder](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#createplaceholder)
 * [createRuleCompletion](_implementions_codemirror_codemirror_editor_.codemirroreditor.md#createrulecompletion)
@@ -511,11 +511,11 @@ ___
 **Returns:** `void`
 
 ___
-<a id="clearcompletions"></a>
+<a id="clearallcompletions"></a>
 
-### `<Private>` clearCompletions
+###  clearAllCompletions
 
-▸ **clearCompletions**(): `void`
+▸ **clearAllCompletions**(): `void`
 
 **Returns:** `void`
 

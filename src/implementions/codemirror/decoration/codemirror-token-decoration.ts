@@ -41,6 +41,7 @@ export class CodeMirrorTokenDecoration implements TokenDecoration {
         //
         if (this.editor.getDisplayDecorations()) {
             this.show();
+            this.cursorActivityFunction();
         } else {
             this.hidden = true;
         }

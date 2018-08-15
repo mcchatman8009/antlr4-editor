@@ -47,17 +47,22 @@ export class CodeMirrorPlaceholder implements Placeholder {
         this.clearCompletions();
 
         const popup = new GenericCompletionPopup(this.domContainer, this.editor);
-        popup.singleCompletionCssClass = HINT_CLASS;
-        popup.completionsCssClass = HINTS_CLASS;
-        popup.activeCompletionCssClass = ACTIVE_HINT_CLASS;
-
-        popup.showHints(this.domContainer, completions);
-
         this.currentCompletionPopup = popup;
 
-        popup.afterSelection = (completion) => {
-            this.range = completion.range;
-        };
+        setTimeout(() => {
+            popup.singleCompletionCssClass = HINT_CLASS;
+            popup.completionsCssClass = HINTS_CLASS;
+            popup.activeCompletionCssClass = ACTIVE_HINT_CLASS;
+
+            popup.showHints(this.domContainer, completions);
+
+
+            popup.afterSelection = (completion) => {
+                this.range = completion.range;
+                this.editor.focus();
+            };
+
+        });
 
         return popup;
     }

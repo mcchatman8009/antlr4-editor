@@ -25,6 +25,7 @@
 * [addStyleToRule](_editor_antlr_editor_.antlreditor.md#addstyletorule)
 * [addStyleToToken](_editor_antlr_editor_.antlreditor.md#addstyletotoken)
 * [addTokenSelection](_editor_antlr_editor_.antlreditor.md#addtokenselection)
+* [clearAllCompletions](_editor_antlr_editor_.antlreditor.md#clearallcompletions)
 * [createBookmarkDecoration](_editor_antlr_editor_.antlreditor.md#createbookmarkdecoration)
 * [createPlaceholder](_editor_antlr_editor_.antlreditor.md#createplaceholder)
 * [createRuleCompletion](_editor_antlr_editor_.antlreditor.md#createrulecompletion)
@@ -252,6 +253,15 @@ ___
 | Param | Type |
 | ------ | ------ |
 | token | `AntlrTokenWrapper` |
+
+**Returns:** `void`
+
+___
+<a id="clearallcompletions"></a>
+
+###  clearAllCompletions
+
+▸ **clearAllCompletions**(): `void`
 
 **Returns:** `void`
 

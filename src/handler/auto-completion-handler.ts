@@ -1,6 +1,7 @@
 import {AntlrEditor} from '../editor/antlr-editor';
 import {AntlrRuleWrapper} from 'antlr4-helper';
 import {AutoCompleteEvent} from '../event/auto-complete-event';
+import {isRuleParent} from '../util/rule';
 
 export class AutoCompletionHandler {
     constructor(private editor: AntlrEditor) {
@@ -12,6 +13,8 @@ export class AutoCompletionHandler {
                 const rule = this.getRuleHint();
 
                 if (rule) {
+                    console.log(event);
+                    console.log(rule);
                     const stack = [rule];
 
                     while (stack.length > 0) {
@@ -27,6 +30,8 @@ export class AutoCompletionHandler {
                         }
                     }
                 }
+            } else {
+                this.editor.clearAllCompletions();
             }
         });
     }
@@ -76,13 +81,18 @@ export class AutoCompletionHandler {
         }
 
         if (errorRuleHint && ruleLookup) {
-            const errorPriority = this.computeRulePriority(errorRuleHint);
-            const rulePriority = this.computeRulePriority(ruleLookup);
-            if (errorPriority > rulePriority) {
-                return errorRuleHint;
-            } else {
+            if (isRuleParent(errorRuleHint.getRule(), ruleLookup.getRule())) {
                 return ruleLookup;
+            } else {
+                return errorRuleHint;
             }
+            // const errorPriority = this.computeRulePriority(errorRuleHint);
+            // const rulePriority = this.computeRulePriority(ruleLookup);
+            // if (errorPriority > rulePriority) {
+            //     return errorRuleHint;
+            // } else {
+            //     return ruleLookup;
+            // }
         } else if (errorRuleHint) {
             return errorRuleHint;
         } else if (ruleLookup) {

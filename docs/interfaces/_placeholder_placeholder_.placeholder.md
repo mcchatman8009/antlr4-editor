@@ -14,6 +14,7 @@
 
 ### Methods
 
+* [addChangeListener](_placeholder_placeholder_.placeholder.md#addchangelistener)
 * [enableDefaultKeyEventHandlers](_placeholder_placeholder_.placeholder.md#enabledefaultkeyeventhandlers)
 * [exists](_placeholder_placeholder_.placeholder.md#exists)
 * [focus](_placeholder_placeholder_.placeholder.md#focus)
@@ -29,6 +30,21 @@
 
 ## Methods
 
+<a id="addchangelistener"></a>
+
+###  addChangeListener
+
+▸ **addChangeListener**(listener: *`function`*): `void`
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| listener | `function` |
+
+**Returns:** `void`
+
+___
 <a id="enabledefaultkeyeventhandlers"></a>
 
 ###  enableDefaultKeyEventHandlers

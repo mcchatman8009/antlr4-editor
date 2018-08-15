@@ -41,6 +41,7 @@ export class CodeMirrorRuleDecoration implements RuleDecoration {
         //
         if (this.editor.getDisplayDecorations()) {
             this.show();
+            this.cursorActivityFunction();
         } else {
             this.hidden = true;
         }

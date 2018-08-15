@@ -94,7 +94,7 @@ ___
 ___
 <a id="range"></a>
 
-###  range
+### `<Optional>` range
 
 **● range**: *[[EditorPosition](_types_.editorposition.md), [EditorPosition](_types_.editorposition.md)]*
 

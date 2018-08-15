@@ -11,6 +11,9 @@ import {Placeholder} from '../placeholder/placeholder';
 import {BookmarkDecoration} from '../bookmark/bookmark';
 
 export interface AntlrEditor {
+
+    clearAllCompletions(): void;
+
     setReadOnly(readOnly: boolean): void;
 
     getReadOnly(): boolean;

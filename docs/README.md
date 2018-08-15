@@ -97,6 +97,7 @@ document.body.appendChild(el);
 * ["toolbar/simple-toolbar"](modules/_toolbar_simple_toolbar_.md)
 * ["types"](modules/_types_.md)
 * ["util/dom"](modules/_util_dom_.md)
+* ["util/rule"](modules/_util_rule_.md)
 
 ---
 

@@ -134,7 +134,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         });
 
         parser.addParserCompleteListener(() => {
-            this.clearCompletions();
+            this.clearAllCompletions();
 
             parser.getAllRules().filter((rule) => rule.exists())
                 .map((rule) => {
@@ -180,7 +180,7 @@ export class CodeMirrorEditor implements AntlrEditor {
             to: {ch: newRange[0].column, line: newRange[0].line},
             text: [text],
             removed: [],
-            origin: text
+            origin: 'setValue'
         } as EditorChange;
 
         this.lastChangeEvent = new CodeMirrorChangeEvent(this, [change]);
@@ -448,18 +448,21 @@ export class CodeMirrorEditor implements AntlrEditor {
     }
 
     showCompletions(completions: Completion[]): CompletionPopup {
-        this.clearCompletions();
+        this.clearAllCompletions();
         this.addKeyMapping(this.defaultHintMapping);
 
-        const cursorEl = this.domContainer.getElementsByClassName('CodeMirror-cursor').item(0) as HTMLElement;
         const popup = new GenericCompletionPopup(this.hintContainer, this);
-
-        popup.singleCompletionCssClass = HINT_CLASS;
-        popup.completionsCssClass = HINTS_CLASS;
-        popup.activeCompletionCssClass = ACTIVE_HINT_CLASS;
-
-        popup.showHints(cursorEl, completions);
         this.currentCompletionPopup = popup;
+
+        setTimeout(() => {
+            const cursorEl = this.domContainer.getElementsByClassName('CodeMirror-cursor').item(0) as HTMLElement;
+
+            popup.singleCompletionCssClass = HINT_CLASS;
+            popup.completionsCssClass = HINTS_CLASS;
+            popup.activeCompletionCssClass = ACTIVE_HINT_CLASS;
+
+            popup.showHints(cursorEl, completions);
+        });
 
         return popup;
     }
@@ -483,7 +486,7 @@ export class CodeMirrorEditor implements AntlrEditor {
     createPlaceholder(range: [EditorPosition, EditorPosition]): Placeholder {
         const el = document.createElement('span');
         const placeholder = new CodeMirrorPlaceholder(this, el, range);
-        this.clearCompletions();
+        this.clearAllCompletions();
 
         this.placeholdersRendered.add(placeholder);
 
@@ -596,7 +599,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         (this.editorImplementation as any).performLint();
     }
 
-    private clearCompletions() {
+    clearAllCompletions(): void {
         if (!_.isNil(this.currentCompletionPopup)) {
             this.currentCompletionPopup.removeCompletions();
             this.removeKeyMapping(this.defaultHintMapping);
@@ -641,10 +644,11 @@ export class CodeMirrorEditor implements AntlrEditor {
             Down: () => this.currentCompletionPopup.chooseNextCompletion(),
         };
 
-        window.addEventListener('blur', () => this.clearCompletions());
+        window.addEventListener('blur', () => this.clearAllCompletions());
 
         this.editorImplementation.on('changes', (___, changes) => {
             this.lastChangeEvent = new CodeMirrorChangeEvent(this, changes);
+
             if (this.setValueEvent) {
                 //
                 // Set the cursor the the last know position found.
