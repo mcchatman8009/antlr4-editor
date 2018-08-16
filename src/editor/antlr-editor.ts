@@ -12,6 +12,8 @@ import {BookmarkDecoration} from '../bookmark/bookmark';
 
 export interface AntlrEditor {
 
+    setHintContainer(el: HTMLElement): void;
+
     clearAllCompletions(): void;
 
     setReadOnly(readOnly: boolean): void;

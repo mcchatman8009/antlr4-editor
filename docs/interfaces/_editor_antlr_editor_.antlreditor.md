@@ -71,6 +71,7 @@
 * [setDisplayOnlyRelevantEditorErrors](_editor_antlr_editor_.antlreditor.md#setdisplayonlyrelevanteditorerrors)
 * [setEditorPlaceholderText](_editor_antlr_editor_.antlreditor.md#seteditorplaceholdertext)
 * [setEnableVim](_editor_antlr_editor_.antlreditor.md#setenablevim)
+* [setHintContainer](_editor_antlr_editor_.antlreditor.md#sethintcontainer)
 * [setLineWrapping](_editor_antlr_editor_.antlreditor.md#setlinewrapping)
 * [setParser](_editor_antlr_editor_.antlreditor.md#setparser)
 * [setReadOnly](_editor_antlr_editor_.antlreditor.md#setreadonly)
@@ -806,6 +807,21 @@ ___
 | Param | Type |
 | ------ | ------ |
 | enable | `boolean` |
+
+**Returns:** `void`
+
+___
+<a id="sethintcontainer"></a>
+
+###  setHintContainer
+
+▸ **setHintContainer**(el: *`HTMLElement`*): `void`
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| el | `HTMLElement` |
 
 **Returns:** `void`
 
