@@ -23,7 +23,7 @@ editor.addAutoCompleteListener('id', (event) => {
     // console.log(event.rule.getText());
 
     event.showCompletions([{
-        text: 'a = b',
+        text: 'a = {{ b }}',
         displayText: 'a = val',
         placeholderVariables: {b: {defaultValue: 'value'}}
     }, {text: 'vartwo'}]);
