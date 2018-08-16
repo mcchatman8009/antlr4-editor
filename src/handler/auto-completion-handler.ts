@@ -9,6 +9,8 @@ export class AutoCompletionHandler {
 
     processEvents() {
         this.editor.addChangeListener((event) => {
+            this.editor.clearAllCompletions();
+
             if (event.hasInsertEditChange()) {
                 const rule = this.getRuleHint();
 
@@ -30,8 +32,6 @@ export class AutoCompletionHandler {
                         }
                     }
                 }
-            } else {
-                this.editor.clearAllCompletions();
             }
         });
     }
@@ -41,7 +41,7 @@ export class AutoCompletionHandler {
 
         if (parser.hasErrors()) {
             const cursorPosition = this.editor.getCursorPosition();
-            let colStart = Math.max(0, cursorPosition.column - 1);
+            let colStart = Math.max(0, cursorPosition.column);
 
             for (let i = cursorPosition.line; i >= 0; i--) {
                 for (let j = colStart; j >= 0; j--) {

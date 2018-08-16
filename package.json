@@ -1,6 +1,6 @@
 {
   "name": "antlr4-editor",
-  "version": "1.0.25",
+  "version": "1.0.34",
   "description": "An full editor front-end library that can support various editor platforms, all using Antlr4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -48,7 +48,7 @@
     "email": "mcchatman8009@gmail.com"
   },
   "dependencies": {
-    "antlr4-helper": "^1.0.32",
+    "antlr4-helper": "^1.0.39",
     "antlr4-tool": "^1.0.17",
     "chalk": "^2.4.1",
     "codemirror": "^5.39.2",
