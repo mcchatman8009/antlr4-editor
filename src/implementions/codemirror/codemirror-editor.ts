@@ -38,6 +38,7 @@ import {Placeholder} from '../../placeholder/placeholder';
 import {CodeMirrorPlaceholder} from './placeholder/codemirror-placeholder';
 import {BookmarkDecoration} from '../../bookmark/bookmark';
 import {CodeMirrorBookmark} from './bookmark/codemirror-bookmark';
+import {removeElement} from '../../util/dom';
 
 export class CodeMirrorEditor implements AntlrEditor {
     editorImplementation: Editor;
@@ -603,6 +604,12 @@ export class CodeMirrorEditor implements AntlrEditor {
         if (!_.isNil(this.currentCompletionPopup)) {
             this.currentCompletionPopup.removeCompletions();
             this.removeKeyMapping(this.defaultHintMapping);
+            const el = document.getElementsByClassName('CodeMirror-hints');
+            const n = el.length;
+
+            _.range(n).forEach((i) => {
+                removeElement(el.item(i) as HTMLElement);
+            });
         }
     }
 
