@@ -8,7 +8,7 @@
 
 ## Implemented by
 
-* [CodeMirrorRuleDecoration](../classes/_implementions_codemirror_decoration_codemirror_rule_decoration_.codemirrorruledecoration.md)
+* [CodeMirrorRuleDecoration](../classes/_implementations_codemirror_decoration_codemirror_rule_decoration_.codemirrorruledecoration.md)
 
 ## Index
 

@@ -8,7 +8,7 @@
 
 ## Implemented by
 
-* [CodeMirrorTokenDecoration](../classes/_implementions_codemirror_decoration_codemirror_token_decoration_.codemirrortokendecoration.md)
+* [CodeMirrorTokenDecoration](../classes/_implementations_codemirror_decoration_codemirror_token_decoration_.codemirrortokendecoration.md)
 
 ## Index
 

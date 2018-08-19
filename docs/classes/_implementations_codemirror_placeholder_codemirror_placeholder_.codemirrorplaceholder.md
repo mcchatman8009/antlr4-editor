@@ -1,4 +1,4 @@
-[antlr4-editor](../README.md) > ["implementions/codemirror/placeholder/codemirror-placeholder"](../modules/_implementions_codemirror_placeholder_codemirror_placeholder_.md) > [CodeMirrorPlaceholder](../classes/_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md)
+[antlr4-editor](../README.md) > ["implementations/codemirror/placeholder/codemirror-placeholder"](../modules/_implementations_codemirror_placeholder_codemirror_placeholder_.md) > [CodeMirrorPlaceholder](../classes/_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md)
 
 # Class: CodeMirrorPlaceholder
 
@@ -14,35 +14,35 @@
 
 ### Constructors
 
-* [constructor](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#constructor)
+* [constructor](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#constructor)
 
 ### Properties
 
-* [currentCompletionPopup](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#currentcompletionpopup)
-* [domContainer](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#domcontainer)
-* [editor](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#editor)
-* [inputElement](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#inputelement)
-* [mark](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#mark)
-* [placeHolderText](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#placeholdertext)
-* [range](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#range)
+* [currentCompletionPopup](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#currentcompletionpopup)
+* [domContainer](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#domcontainer)
+* [editor](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#editor)
+* [inputElement](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#inputelement)
+* [mark](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#mark)
+* [placeHolderText](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#placeholdertext)
+* [range](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#range)
 
 ### Methods
 
-* [addChangeListener](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#addchangelistener)
-* [chooseNextCompletion](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#choosenextcompletion)
-* [choosePrevCompletion](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#chooseprevcompletion)
-* [clearCompletions](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#clearcompletions)
-* [clearMark](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#clearmark)
-* [enableDefaultKeyEventHandlers](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#enabledefaultkeyeventhandlers)
-* [exists](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#exists)
-* [focus](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#focus)
-* [getDomElement](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#getdomelement)
-* [getInputElement](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#getinputelement)
-* [getPlaceHolderText](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#getplaceholdertext)
-* [getTextRange](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#gettextrange)
-* [setPlaceHolderText](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#setplaceholdertext)
-* [setRangeWithText](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#setrangewithtext)
-* [showCompletions](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#showcompletions)
+* [addChangeListener](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#addchangelistener)
+* [chooseNextCompletion](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#choosenextcompletion)
+* [choosePrevCompletion](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#chooseprevcompletion)
+* [clearCompletions](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#clearcompletions)
+* [clearMark](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#clearmark)
+* [enableDefaultKeyEventHandlers](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#enabledefaultkeyeventhandlers)
+* [exists](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#exists)
+* [focus](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#focus)
+* [getDomElement](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#getdomelement)
+* [getInputElement](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#getinputelement)
+* [getPlaceHolderText](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#getplaceholdertext)
+* [getTextRange](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#gettextrange)
+* [setPlaceHolderText](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#setplaceholdertext)
+* [setRangeWithText](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#setrangewithtext)
+* [showCompletions](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md#showcompletions)
 
 ---
 
@@ -52,17 +52,17 @@
 
 ###  constructor
 
-⊕ **new CodeMirrorPlaceholder**(editor: *[CodeMirrorEditor](_implementions_codemirror_codemirror_editor_.codemirroreditor.md)*, domContainer: *`HTMLElement`*, range: *[[EditorPosition](../interfaces/_types_.editorposition.md), [EditorPosition](../interfaces/_types_.editorposition.md)]*): [CodeMirrorPlaceholder](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md)
+⊕ **new CodeMirrorPlaceholder**(editor: *[CodeMirrorEditor](_implementations_codemirror_codemirror_editor_.codemirroreditor.md)*, domContainer: *`HTMLElement`*, range: *[[EditorPosition](../interfaces/_types_.editorposition.md), [EditorPosition](../interfaces/_types_.editorposition.md)]*): [CodeMirrorPlaceholder](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md)
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| editor | [CodeMirrorEditor](_implementions_codemirror_codemirror_editor_.codemirroreditor.md) |
+| editor | [CodeMirrorEditor](_implementations_codemirror_codemirror_editor_.codemirroreditor.md) |
 | domContainer | `HTMLElement` |
 | range | [[EditorPosition](../interfaces/_types_.editorposition.md), [EditorPosition](../interfaces/_types_.editorposition.md)] |
 
-**Returns:** [CodeMirrorPlaceholder](_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md)
+**Returns:** [CodeMirrorPlaceholder](_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 ### `<Private>` editor
 
-**● editor**: *[CodeMirrorEditor](_implementions_codemirror_codemirror_editor_.codemirroreditor.md)*
+**● editor**: *[CodeMirrorEditor](_implementations_codemirror_codemirror_editor_.codemirroreditor.md)*
 
 ___
 <a id="inputelement"></a>

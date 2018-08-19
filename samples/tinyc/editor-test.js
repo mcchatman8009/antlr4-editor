@@ -1,6 +1,6 @@
 const {SimpleToolbar} = require("../../dist/toolbar/simple-toolbar");
 
-const {CodeMirrorEditor} = require('../../dist/implementions/codemirror/codemirror-editor');
+const {CodeMirrorEditor} = require('../../dist/implementations/codemirror/codemirror-editor');
 const antlrHelper = require('antlr4-helper');
 
 const TinycLexer = require('./parser/TinycLexer').TinycLexer;

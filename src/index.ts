@@ -19,8 +19,6 @@ export * from './event/placeholder-auto-complete-event';
 export * from './handler/auto-completion-handler';
 export * from './handler/completion-template-handler';
 
-export * from './implementions';
-
 export * from './key-mapping/key-mapping';
 
 export * from './placeholder/placeholder';

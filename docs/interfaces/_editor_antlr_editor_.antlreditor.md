@@ -8,7 +8,7 @@
 
 ## Implemented by
 
-* [CodeMirrorEditor](../classes/_implementions_codemirror_codemirror_editor_.codemirroreditor.md)
+* [CodeMirrorEditor](../classes/_implementations_codemirror_codemirror_editor_.codemirroreditor.md)
 
 ## Index
 

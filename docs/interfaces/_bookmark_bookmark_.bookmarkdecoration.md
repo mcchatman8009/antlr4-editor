@@ -8,7 +8,7 @@
 
 ## Implemented by
 
-* [CodeMirrorBookmark](../classes/_implementions_codemirror_bookmark_codemirror_bookmark_.codemirrorbookmark.md)
+* [CodeMirrorBookmark](../classes/_implementations_codemirror_bookmark_codemirror_bookmark_.codemirrorbookmark.md)
 
 ## Index
 

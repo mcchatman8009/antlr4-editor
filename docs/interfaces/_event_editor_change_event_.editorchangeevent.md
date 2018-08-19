@@ -8,7 +8,7 @@
 
 ## Implemented by
 
-* [CodeMirrorChangeEvent](../classes/_implementions_codemirror_event_codemirror_change_event_.codemirrorchangeevent.md)
+* [CodeMirrorChangeEvent](../classes/_implementations_codemirror_event_codemirror_change_event_.codemirrorchangeevent.md)
 
 ## Index
 

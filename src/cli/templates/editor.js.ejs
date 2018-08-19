@@ -7,6 +7,7 @@ variables:
     editorPlatform -  the editor platform
 %>
 var antlrEditor = require('<%= editorModule %>');
+var implementation = require('<%= editorModule %>/implementations/<%= editorPlatform %>');
 var antlrHelper = require('antlr4-helper');
 var <%= LexerClass %> = require('./<%= LexerClass %>').<%= LexerClass %>;
 var <%= ParserClass %> = require('./<%= ParserClass %>').<%= ParserClass %>;
@@ -21,7 +22,7 @@ var parser = antlrHelper.createParser(factory);
 
 
 function createEditor() {
-    return antlrEditor.createEditor(parser, '<%= editorPlatform %>');
+    return implementation.createEditor(parser);
 }
 
 exports.createEditor = createEditor;

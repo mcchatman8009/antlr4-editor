@@ -8,7 +8,7 @@
 
 ## Implemented by
 
-* [CodeMirrorPlaceholder](../classes/_implementions_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md)
+* [CodeMirrorPlaceholder](../classes/_implementations_codemirror_placeholder_codemirror_placeholder_.codemirrorplaceholder.md)
 
 ## Index
 
