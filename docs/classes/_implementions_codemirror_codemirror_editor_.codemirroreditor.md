@@ -261,7 +261,7 @@ ___
 ___
 <a id="hintcontainer"></a>
 
-### `<Private>` hintContainer
+###  hintContainer
 
 **● hintContainer**: *`HTMLElement`*
 

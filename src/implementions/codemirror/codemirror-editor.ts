@@ -60,7 +60,7 @@ export class CodeMirrorEditor implements AntlrEditor {
     private lastChangeEvent: EditorChangeEvent;
     private defaultHintMapping: KeyMapping;
     private selections: Set<[EditorPosition, EditorPosition]>;
-    private hintContainer: HTMLElement;
+    hintContainer: HTMLElement;
     private customErrors: Set<AntlrRuleError>;
     private validators: Set<(rule: AntlrRuleWrapper) => AntlrRuleError>;
     private setValueEvent: boolean;

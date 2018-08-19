@@ -7,4 +7,5 @@ npm run lint
 npm run build
 npm run build-docs
 #npm run test
-npm publish
+./dist.sh
+npm publish ./dist/

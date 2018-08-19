@@ -1,11 +1,11 @@
 {
   "name": "antlr4-editor",
-  "version": "1.0.41",
+  "version": "1.0.49",
   "description": "An full editor front-end library that can support various editor platforms, all using Antlr4",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "bin": {
-    "antlr4-editor": "dist/cli/app.js"
+    "antlr4-editor": "cli/app.js"
   },
   "scripts": {
     "test": "mocha",
@@ -18,7 +18,7 @@
     "build": "webpack --config ./webpack.scss.config.js && tsc && cp -r src/cli/templates/*.ejs ./dist/cli/templates/"
   },
   "files": [
-    "dist",
+    "**/*",
     "LICENSE",
     "docs"
   ],
@@ -48,7 +48,7 @@
     "email": "mcchatman8009@gmail.com"
   },
   "dependencies": {
-    "antlr4-helper": "^1.0.44",
+    "antlr4-helper": "^1.0.45",
     "antlr4-tool": "^1.0.17",
     "chalk": "^2.4.1",
     "codemirror": "^5.39.2",

@@ -60,7 +60,7 @@ export class CodeMirrorRuleDecoration implements RuleDecoration {
     }
 
     show(): void {
-        if (!this.mark) {
+        if (!this.mark && this.editor.getDisplayDecorations()) {
             const ruleRange = this.rule.getRange();
 
             this.mark = this.editor.editorImplementation.getDoc()

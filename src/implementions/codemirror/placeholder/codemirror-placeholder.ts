@@ -46,7 +46,7 @@ export class CodeMirrorPlaceholder implements Placeholder {
     showCompletions(completions: Completion[]): CompletionPopup {
         this.clearCompletions();
 
-        const popup = new GenericCompletionPopup(this.domContainer, this.editor);
+        const popup = new GenericCompletionPopup(this.editor.hintContainer, this.editor);
         this.currentCompletionPopup = popup;
 
         setTimeout(() => {
@@ -112,6 +112,14 @@ export class CodeMirrorPlaceholder implements Placeholder {
             event.stopImmediatePropagation();
 
             switch (event.code) {
+                case 'Backspace':
+                case 'Delete':
+                    if (_.isEmpty(this.inputElement.innerText)) {
+                        event.preventDefault();
+                        this.clearMark();
+                        this.editor.focus();
+                    }
+                    return;
                 case 'Escape':
                     event.preventDefault();
                     this.clearMark();
