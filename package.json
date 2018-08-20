@@ -10,7 +10,7 @@
   "scripts": {
     "test": "mocha",
     "build-docs": "typedoc --theme markdown --mdHideSources --out docs --includes ./src",
-    "build-tinyc-sample": "antlr4-tool -o ./samples/tinyc/parser grammars/tinyc/Tinyc.g4",
+    "build-tinyc-sample": "antlr4-tool -o ./samples/tinyc/parser samples/tinyc/Tinyc.g4",
     "build-scss": "webpack --config ./webpack.scss.config.js",
     "start-tinyc": "electron ./samples/tinyc/index.html",
     "clean": "rm -rf dist",
@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "antlr4-helper": "^1.0.45",
-    "antlr4-tool": "^1.0.17",
+    "antlr4-tool": "^1.0.19",
     "chalk": "^2.4.1",
     "codemirror": "^5.39.2",
     "commander": "^2.17.1",

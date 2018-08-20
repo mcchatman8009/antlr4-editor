@@ -1,4 +1,6 @@
 import {templates} from './templates';
+// const tool = require('antlr4-tool');
+import * as tool from 'antlr4-tool';
 
 const commander = require('commander');
 const ejs = require('ejs');
@@ -6,7 +8,6 @@ const fs = require('fs');
 const chalk = require('chalk');
 const path = require('path');
 const _ = require('lodash');
-const tool = require('antlr4-tool');
 const parserUtil = require('antlr4-tool/dist/antlr-core/parser-util');
 const mkdir = require('mkdir-recursive').mkdirSync;
 
