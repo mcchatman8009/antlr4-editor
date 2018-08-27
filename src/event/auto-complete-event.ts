@@ -19,7 +19,12 @@ export class AutoCompleteEvent {
     showCompletions(completions: Completion[]): CompletionPopup {
 
         completions = completions.map((completion) => {
-            return this.completionTemplateHandler.processCompletion(this.editor.createRuleCompletion(completion, this.rule));
+            if (completion.range === undefined) {
+                const newCompletion = this.editor.createRuleCompletion(completion, this.rule);
+                return this.completionTemplateHandler.processCompletion(this.editor.createRuleCompletion(completion, this.rule));
+            } else {
+                return this.completionTemplateHandler.processCompletion(completion);
+            }
         });
 
         return this.editor.showCompletions(completions);

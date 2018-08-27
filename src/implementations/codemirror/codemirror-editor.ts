@@ -60,7 +60,7 @@ export class CodeMirrorEditor implements AntlrEditor {
     private lastChangeEvent: EditorChangeEvent;
     private defaultHintMapping: KeyMapping;
     private selections: Set<[EditorPosition, EditorPosition]>;
-    hintContainer: HTMLElement;
+    autoCompleteContainer: HTMLElement;
     private customErrors: Set<AntlrRuleError>;
     private validators: Set<(rule: AntlrRuleWrapper) => AntlrRuleError>;
     private setValueEvent: boolean;
@@ -91,7 +91,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         }
 
         this.domContainer.classList.add('antlr-editor');
-        this.hintContainer = this.domContainer;
+        this.autoCompleteContainer = this.domContainer;
 
         this.editorImplementation = CodeMirror(this.domContainer, {});
         this.editorImplementation.getDoc().getMode().name = mode;
@@ -137,27 +137,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         parser.addParserCompleteListener(() => {
             this.clearAllCompletions();
 
-            parser.getAllRules().filter((rule) => rule.exists())
-                .map((rule) => {
-                    const ruleName = rule.getName();
-
-                    if (!_.isNil(this.defaultRuleStyles[ruleName])) {
-                        const style = this.defaultRuleStyles[ruleName];
-
-                        this.styleRule(rule, style);
-                    } else {
-                        this.styleRule(rule);
-                    }
-                });
-
-            parser.getAllTokens().filter((token) => token.exists())
-                .forEach((token) => {
-                    const name = token.getName() ? token.getName() : token.getText();
-                    const style = this.defaultTokenStyles[name];
-
-                    this.styleToken(token, style);
-                });
-
+            this.executeDefaultStyling();
 
             if (this.lastChangeEvent) {
                 this.changeSubject.next(this.lastChangeEvent);
@@ -166,8 +146,8 @@ export class CodeMirrorEditor implements AntlrEditor {
         });
     }
 
-    setHintContainer(el: HTMLElement): void {
-        this.hintContainer = el;
+    setAutoCompleteContainer(el: HTMLElement): void {
+        this.autoCompleteContainer = el;
     }
 
     replaceRange(range: [EditorPosition, EditorPosition], text: string): [EditorPosition, EditorPosition] {
@@ -186,9 +166,11 @@ export class CodeMirrorEditor implements AntlrEditor {
 
         this.lastChangeEvent = new CodeMirrorChangeEvent(this, [change]);
         this.editorImplementation.getDoc().setCursor({ch: this.cursorPosition.column, line: this.cursorPosition.line});
+
         this.editorImplementation.setValue(this.parser.getText());
 
         this.parser.reparse();
+
         this.editorImplementation.refresh();
 
         return newRange;
@@ -197,16 +179,16 @@ export class CodeMirrorEditor implements AntlrEditor {
     setText(text: string): void {
         this.updateCursorPosition();
         this.setValueEvent = true;
-        this.editorImplementation.setValue(this.parser.getText());
+        this.editorImplementation.setValue(text);
 
         this.parser.parse(text);
+
     }
 
     update(): void {
         this.updateCursorPosition();
         this.setValueEvent = true;
         this.editorImplementation.setValue(this.parser.getText());
-
         this.parser.reparse();
     }
 
@@ -452,7 +434,7 @@ export class CodeMirrorEditor implements AntlrEditor {
         this.clearAllCompletions();
         this.addKeyMapping(this.defaultHintMapping);
 
-        const popup = new GenericCompletionPopup(this.hintContainer, this);
+        const popup = new GenericCompletionPopup(this.autoCompleteContainer, this);
         this.currentCompletionPopup = popup;
 
         setTimeout(() => {
@@ -704,4 +686,28 @@ export class CodeMirrorEditor implements AntlrEditor {
             decoration.show();
         });
     }
+
+    private executeDefaultStyling() {
+        this.parser.getAllRules().filter((rule) => rule.exists())
+            .map((rule) => {
+                const ruleName = rule.getName();
+
+                if (!_.isNil(this.defaultRuleStyles[ruleName])) {
+                    const style = this.defaultRuleStyles[ruleName];
+
+                    this.styleRule(rule, style);
+                } else {
+                    this.styleRule(rule);
+                }
+            });
+
+        this.parser.getAllTokens().filter((token) => token.exists())
+            .forEach((token) => {
+                const name = token.getName() ? token.getName() : token.getText();
+                const style = this.defaultTokenStyles[name];
+
+                this.styleToken(token, style);
+            });
+    }
+
 }

@@ -46,7 +46,7 @@ export class CodeMirrorPlaceholder implements Placeholder {
     showCompletions(completions: Completion[]): CompletionPopup {
         this.clearCompletions();
 
-        const popup = new GenericCompletionPopup(this.editor.hintContainer, this.editor);
+        const popup = new GenericCompletionPopup(this.editor.autoCompleteContainer, this.editor);
         this.currentCompletionPopup = popup;
 
         setTimeout(() => {

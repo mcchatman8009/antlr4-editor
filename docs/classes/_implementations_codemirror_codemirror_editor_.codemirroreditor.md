@@ -18,6 +18,7 @@
 
 ### Properties
 
+* [autoCompleteContainer](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#autocompletecontainer)
 * [autoCompleteSubject](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#autocompletesubject)
 * [autoCompletionHandler](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#autocompletionhandler)
 * [bookmarkDecorations](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#bookmarkdecorations)
@@ -33,7 +34,6 @@
 * [displaySingleError](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#displaysingleerror)
 * [domContainer](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#domcontainer)
 * [editorImplementation](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#editorimplementation)
-* [hintContainer](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#hintcontainer)
 * [lastChangeEvent](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#lastchangeevent)
 * [parser](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#parser)
 * [placeholdersRendered](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#placeholdersrendered)
@@ -67,6 +67,7 @@
 * [createRulePlaceholder](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#createruleplaceholder)
 * [createTokenDecoration](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#createtokendecoration)
 * [defineErrorMessage](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#defineerrormessage)
+* [executeDefaultStyling](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#executedefaultstyling)
 * [focus](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#focus)
 * [getAllRules](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#getallrules)
 * [getAllTokens](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#getalltokens)
@@ -98,6 +99,7 @@
 * [mapParseErrorToCodeMirrorError](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#mapparseerrortocodemirrorerror)
 * [removeKeyMapping](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#removekeymapping)
 * [replaceRange](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#replacerange)
+* [setAutoCompleteContainer](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#setautocompletecontainer)
 * [setCursorPosition](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#setcursorposition)
 * [setDefaultRuleStyles](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#setdefaultrulestyles)
 * [setDefaultTokenStyles](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#setdefaulttokenstyles)
@@ -106,7 +108,6 @@
 * [setDisplayOnlyRelevantEditorErrors](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#setdisplayonlyrelevanteditorerrors)
 * [setEditorPlaceholderText](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#seteditorplaceholdertext)
 * [setEnableVim](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#setenablevim)
-* [setHintContainer](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#sethintcontainer)
 * [setLineWrapping](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#setlinewrapping)
 * [setParser](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#setparser)
 * [setReadOnly](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#setreadonly)
@@ -146,6 +147,13 @@ ___
 
 ## Properties
 
+<a id="autocompletecontainer"></a>
+
+###  autoCompleteContainer
+
+**● autoCompleteContainer**: *`HTMLElement`*
+
+___
 <a id="autocompletesubject"></a>
 
 ### `<Private>` autoCompleteSubject
@@ -257,13 +265,6 @@ ___
 ###  editorImplementation
 
 **● editorImplementation**: *`Editor`*
-
-___
-<a id="hintcontainer"></a>
-
-###  hintContainer
-
-**● hintContainer**: *`HTMLElement`*
 
 ___
 <a id="lastchangeevent"></a>
@@ -646,6 +647,15 @@ ___
 **Returns:** `void`
 
 ___
+<a id="executedefaultstyling"></a>
+
+### `<Private>` executeDefaultStyling
+
+▸ **executeDefaultStyling**(): `void`
+
+**Returns:** `void`
+
+___
 <a id="focus"></a>
 
 ###  focus
@@ -968,6 +978,21 @@ ___
 **Returns:** [[EditorPosition](../interfaces/_types_.editorposition.md), [EditorPosition](../interfaces/_types_.editorposition.md)]
 
 ___
+<a id="setautocompletecontainer"></a>
+
+###  setAutoCompleteContainer
+
+▸ **setAutoCompleteContainer**(el: *`HTMLElement`*): `void`
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| el | `HTMLElement` |
+
+**Returns:** `void`
+
+___
 <a id="setcursorposition"></a>
 
 ###  setCursorPosition
@@ -1084,21 +1109,6 @@ ___
 | Param | Type |
 | ------ | ------ |
 | enable | `boolean` |
-
-**Returns:** `void`
-
-___
-<a id="sethintcontainer"></a>
-
-###  setHintContainer
-
-▸ **setHintContainer**(el: *`HTMLElement`*): `void`
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| el | `HTMLElement` |
 
 **Returns:** `void`
 

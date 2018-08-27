@@ -15,7 +15,10 @@ export class PlaceHolderAutoCompleteEvent {
     showCompletions(completions: Completion[]): CompletionPopup {
         completions = completions.map((completion) => {
             const newCompletion = (_.clone(completion) as any);
-            newCompletion.range = this.placeHolder.getTextRange();
+
+            if (newCompletion.range === undefined) {
+                newCompletion.range = this.placeHolder.getTextRange();
+            }
 
             return this.completionTemplateHandler.processCompletion(newCompletion);
         });

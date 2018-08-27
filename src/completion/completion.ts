@@ -6,7 +6,7 @@ export interface Completion {
     text: string;
     className?: string;
     displayText?: string;
-    readonly range?: [EditorPosition, EditorPosition];
+    range?: [EditorPosition, EditorPosition];
     onRender?: (completionContainer: HTMLElement) => void;
     placeholders?: { [varName: string]: Placeholder };
     placeholderVariables?: { [varName: string]: PlaceholderVar };

@@ -21,7 +21,6 @@
 * [path](_cli_cli_.md#path)
 * [results](_cli_cli_.md#results)
 * [rootRule](_cli_cli_.md#rootrule)
-* [tool](_cli_cli_.md#tool)
 
 ### Functions
 
@@ -150,13 +149,6 @@ ___
 ### `<Const>` rootRule
 
 **● rootRule**: *`any`* =  results['rootRule']
-
-___
-<a id="tool"></a>
-
-### `<Const>` tool
-
-**● tool**: *`any`* =  require('antlr4-tool')
 
 ___
 
