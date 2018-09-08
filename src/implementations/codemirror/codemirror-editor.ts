@@ -596,23 +596,27 @@ export class CodeMirrorEditor implements AntlrEditor {
     }
 
     private styleToken(token: AntlrTokenWrapper, styleClass?: string): void {
-        const tokenRange = token.getRange();
-        const tokenClass = (token.getName()) ? `antlr-token-${token.getName()}` : 'antlr-token';
+        setTimeout(() => {
+            const tokenRange = token.getRange();
+            const tokenClass = (token.getName()) ? `antlr-token-${token.getName()}` : 'antlr-token';
 
-        this.editorImplementation.getDoc().markText({ch: tokenRange[0].column, line: tokenRange[0].line}, {
-            ch: tokenRange[1].column,
-            line: tokenRange[1].line
-        }, {className: `${tokenClass} ${styleClass ? styleClass : ''}`});
+            this.editorImplementation.getDoc().markText({ch: tokenRange[0].column, line: tokenRange[0].line}, {
+                ch: tokenRange[1].column,
+                line: tokenRange[1].line
+            }, {className: `${tokenClass} ${styleClass ? styleClass : ''}`});
+        });
     }
 
     private styleRule(rule: AntlrRuleWrapper, styleClass?: string): void {
-        const ruleRange = rule.getRange();
-        const ruleClass = `antlr-rule-${rule.getName()}`;
+        setTimeout(() => {
+            const ruleRange = rule.getRange();
+            const ruleClass = `antlr-rule-${rule.getName()}`;
 
-        this.editorImplementation.getDoc().markText({ch: ruleRange[0].column, line: ruleRange[0].line}, {
-            ch: ruleRange[1].column,
-            line: ruleRange[1].line
-        }, {className: `${ruleClass} ${styleClass ? styleClass : ''}`});
+            this.editorImplementation.getDoc().markText({ch: ruleRange[0].column, line: ruleRange[0].line}, {
+                ch: ruleRange[1].column,
+                line: ruleRange[1].line
+            }, {className: `${ruleClass} ${styleClass ? styleClass : ''}`});
+        });
     }
 
     private mapParseErrorToCodeMirrorError(err: AntlrRuleError) {
@@ -688,8 +692,13 @@ export class CodeMirrorEditor implements AntlrEditor {
     }
 
     private executeDefaultStyling() {
-        this.parser.getAllRules().filter((rule) => rule.exists())
-            .map((rule) => {
+        const rules = this.parser.getAllRules();
+        const numberOfRules = rules.length;
+
+        for (let i = 0; i < numberOfRules; i++) {
+            const rule = rules[i];
+
+            if (rule.exists()) {
                 const ruleName = rule.getName();
 
                 if (!_.isNil(this.defaultRuleStyles[ruleName])) {
@@ -699,15 +708,23 @@ export class CodeMirrorEditor implements AntlrEditor {
                 } else {
                     this.styleRule(rule);
                 }
-            });
 
-        this.parser.getAllTokens().filter((token) => token.exists())
-            .forEach((token) => {
+            }
+        }
+
+        const tokens = this.parser.getAllTokens();
+        const numberOfTokens = tokens.length;
+
+        for (let i = 0; i < numberOfTokens; i++) {
+            const token = tokens[i];
+
+            if (token.exists()) {
                 const name = token.getName() ? token.getName() : token.getText();
                 const style = this.defaultTokenStyles[name];
 
                 this.styleToken(token, style);
-            });
+            }
+        }
     }
 
 }

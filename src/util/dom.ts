@@ -1,16 +1,22 @@
 export function removeElement(el: HTMLElement): void {
-    const parent = el.parentNode;
-    if (parent) {
-        parent.removeChild(el);
+    if (el) {
+        const parent = el.parentNode;
+        if (parent) {
+            parent.removeChild(el);
+        }
     }
 }
 
 export function addClass(el: HTMLElement, className: string): void {
-    el.classList.add(className);
+    if (el) {
+        el.classList.add(className);
+    }
 }
 
 export function removeClass(el: HTMLElement, className: string): void {
-    el.classList.remove(className);
+    if (el) {
+        el.classList.remove(className);
+    }
 }
 
 export function createElement(tagName: string, className: string = ''): HTMLElement {
