@@ -718,8 +718,17 @@ export class CodeMirrorEditor implements AntlrEditor {
                 const token = tokens[i];
 
                 if (token.exists()) {
-                    const name = token.getName() ? token.getName() : token.getText();
-                    const style = this.defaultTokenStyles[name];
+                    const text = token.getText();
+                    let style = this.defaultTokenStyles[text];
+
+                    if (style) {
+                        this.styleToken(token, style);
+                        continue;
+                    }
+
+                    const name = token.getName();
+                    style = this.defaultTokenStyles[name];
+
                     if (style) {
                         this.styleToken(token, style);
                     }
