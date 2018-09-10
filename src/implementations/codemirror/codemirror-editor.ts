@@ -137,7 +137,9 @@ export class CodeMirrorEditor implements AntlrEditor {
         parser.addParserCompleteListener(() => {
             this.clearAllCompletions();
 
-            this.executeDefaultStyling();
+            this.editorImplementation.operation(() => {
+                this.executeDefaultStyling();
+            });
 
             if (this.lastChangeEvent) {
                 this.changeSubject.next(this.lastChangeEvent);
@@ -596,27 +598,23 @@ export class CodeMirrorEditor implements AntlrEditor {
     }
 
     private styleToken(token: AntlrTokenWrapper, styleClass?: string): void {
-        setTimeout(() => {
-            const tokenRange = token.getRange();
-            const tokenClass = (token.getName()) ? `antlr-token-${token.getName()}` : 'antlr-token';
+        const tokenRange = token.getRange();
+        const tokenClass = (token.getName()) ? `antlr-token-${token.getName()}` : 'antlr-token';
 
-            this.editorImplementation.getDoc().markText({ch: tokenRange[0].column, line: tokenRange[0].line}, {
-                ch: tokenRange[1].column,
-                line: tokenRange[1].line
-            }, {className: `${tokenClass} ${styleClass ? styleClass : ''}`});
-        });
+        this.editorImplementation.getDoc().markText({ch: tokenRange[0].column, line: tokenRange[0].line}, {
+            ch: tokenRange[1].column,
+            line: tokenRange[1].line
+        }, {className: `${tokenClass} ${styleClass ? styleClass : ''}`});
     }
 
     private styleRule(rule: AntlrRuleWrapper, styleClass?: string): void {
-        setTimeout(() => {
-            const ruleRange = rule.getRange();
-            const ruleClass = `antlr-rule-${rule.getName()}`;
+        const ruleRange = rule.getRange();
+        const ruleClass = `antlr-rule-${rule.getName()}`;
 
-            this.editorImplementation.getDoc().markText({ch: ruleRange[0].column, line: ruleRange[0].line}, {
-                ch: ruleRange[1].column,
-                line: ruleRange[1].line
-            }, {className: `${ruleClass} ${styleClass ? styleClass : ''}`});
-        });
+        this.editorImplementation.getDoc().markText({ch: ruleRange[0].column, line: ruleRange[0].line}, {
+            ch: ruleRange[1].column,
+            line: ruleRange[1].line
+        }, {className: `${ruleClass} ${styleClass ? styleClass : ''}`});
     }
 
     private mapParseErrorToCodeMirrorError(err: AntlrRuleError) {
@@ -692,37 +690,40 @@ export class CodeMirrorEditor implements AntlrEditor {
     }
 
     private executeDefaultStyling() {
-        const rules = this.parser.getAllRules();
-        const numberOfRules = rules.length;
+        if (this.defaultRuleStyles) {
+            const rules = this.parser.getAllRules();
+            const numberOfRules = rules.length;
 
-        for (let i = 0; i < numberOfRules; i++) {
-            const rule = rules[i];
+            for (let i = 0; i < numberOfRules; i++) {
+                const rule = rules[i];
 
-            if (rule.exists()) {
-                const ruleName = rule.getName();
+                if (rule.exists()) {
+                    const ruleName = rule.getName();
 
-                if (!_.isNil(this.defaultRuleStyles[ruleName])) {
-                    const style = this.defaultRuleStyles[ruleName];
-
-                    this.styleRule(rule, style);
-                } else {
-                    this.styleRule(rule);
+                    if (!_.isNil(this.defaultRuleStyles[ruleName])) {
+                        const style = this.defaultRuleStyles[ruleName];
+                        if (style) {
+                            this.styleRule(rule, style);
+                        }
+                    }
                 }
-
             }
         }
 
-        const tokens = this.parser.getAllTokens();
-        const numberOfTokens = tokens.length;
+        if (this.defaultTokenStyles) {
+            const tokens = this.parser.getAllTokens();
+            const numberOfTokens = tokens.length;
 
-        for (let i = 0; i < numberOfTokens; i++) {
-            const token = tokens[i];
+            for (let i = 0; i < numberOfTokens; i++) {
+                const token = tokens[i];
 
-            if (token.exists()) {
-                const name = token.getName() ? token.getName() : token.getText();
-                const style = this.defaultTokenStyles[name];
-
-                this.styleToken(token, style);
+                if (token.exists()) {
+                    const name = token.getName() ? token.getName() : token.getText();
+                    const style = this.defaultTokenStyles[name];
+                    if (style) {
+                        this.styleToken(token, style);
+                    }
+                }
             }
         }
     }
