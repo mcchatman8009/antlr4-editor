@@ -179,18 +179,26 @@ export class CodeMirrorEditor implements AntlrEditor {
     }
 
     setText(text: string): void {
+        if (!this.willValueChange(text)) {
+            return;
+        }
+
         this.updateCursorPosition();
         this.setValueEvent = true;
         this.editorImplementation.setValue(text);
 
         this.parser.parse(text);
-
     }
 
     update(): void {
+        const text = this.parser.getText();
+        if (!this.willValueChange(text)) {
+            return;
+        }
+
         this.updateCursorPosition();
         this.setValueEvent = true;
-        this.editorImplementation.setValue(this.parser.getText());
+        this.editorImplementation.setValue(text);
         this.parser.reparse();
     }
 
@@ -737,4 +745,9 @@ export class CodeMirrorEditor implements AntlrEditor {
         }
     }
 
+    private willValueChange(newValue: string) {
+        const oldValue = this.editorImplementation.getValue();
+
+        return oldValue !== newValue;
+    }
 }
