@@ -123,6 +123,7 @@
 * [update](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#update)
 * [updateCursorPosition](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#updatecursorposition)
 * [validate](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#validate)
+* [willValueChange](_implementations_codemirror_codemirror_editor_.codemirroreditor.md#willvaluechange)
 
 ---
 
@@ -1314,6 +1315,21 @@ ___
 ▸ **validate**(): `void`
 
 **Returns:** `void`
+
+___
+<a id="willvaluechange"></a>
+
+### `<Private>` willValueChange
+
+▸ **willValueChange**(newValue: *`string`*): `boolean`
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| newValue | `string` |
+
+**Returns:** `boolean`
 
 ___
 
