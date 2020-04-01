@@ -1,6 +1,6 @@
 {
   "name": "antlr4-editor",
-  "version": "1.0.77",
+  "version": "1.0.78",
   "description": "An full editor front-end library that can support various editor platforms, all using Antlr4",
   "main": "index.js",
   "types": "index.d.ts",
@@ -8,8 +8,8 @@
     "antlr4-editor": "cli/app.js"
   },
   "scripts": {
+    "fix-resolutions": "npx npm-force-resolutions",
     "test": "mocha",
-    "build-docs": "typedoc --theme markdown --mdHideSources --out docs --includes ./src",
     "build-tinyc-sample": "antlr4-tool -o ./samples/tinyc/parser samples/tinyc/Tinyc.g4",
     "build-scss": "webpack --config ./webpack.scss.config.js",
     "start-tinyc": "electron ./samples/tinyc/index.html",
@@ -48,18 +48,20 @@
     "email": "mcchatman8009@gmail.com"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.149",
     "antlr4-helper": "^1.0.56",
-    "antlr4-tool": "^1.0.19",
+    "antlr4-tool": "^1.0.30",
     "chalk": "^2.4.1",
     "codemirror": "^5.39.2",
     "commander": "^2.17.1",
     "ejs": "^2.6.1",
     "expressive-template": "^1.0.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "mkdir-recursive": "^0.4.0",
     "rxjs": "^6.2.2"
   },
   "devDependencies": {
+    "npm-force-resolutions": "0.0.3",
     "@types/codemirror": "0.0.58",
     "@types/node": "^10.5.4",
     "chai": "^4.1.2",
@@ -67,13 +69,16 @@
     "electron": "^4.0.5",
     "mini-css-extract-plugin": "^0.4.1",
     "mocha": "^5.2.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "4.13.1",
     "sass-loader": "^7.1.0",
     "tslint": "^5.10.0",
-    "typedoc": "^0.11.1",
+    "typedoc": "^0.17.3",
     "typedoc-plugin-markdown": "^1.1.13",
     "typescript": "^2.9.2",
-    "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0"
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "resolutions": {
+    "minimist": "^1.2.5"
   }
 }
