@@ -66,7 +66,7 @@
     "@types/node": "^10.5.4",
     "chai": "^4.1.2",
     "css-loader": "^1.0.0",
-    "electron": "^4.0.5",
+    "electron": "^18.3.7",
     "mini-css-extract-plugin": "^0.4.1",
     "mocha": "^5.2.0",
     "node-sass": "4.13.1",
